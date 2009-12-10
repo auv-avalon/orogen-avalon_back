@@ -1,0 +1,26 @@
+name "avalon_back"
+version "0.1"
+
+using_task_library "dfkiimu"
+using_task_library "igc_driver"
+using_task_library "motcon_controller"
+using_task_library "sonar_driver"
+using_task_library "speed_controller"
+
+deployment "avalon_back_application" do
+	dfkiimu = task("DfkiImuTask","dfkiimu::DfkiImuTask")
+	igc = task("IgcImuTask","igc_driver::IgcImuTask")
+	motcon = task("MotconControllerTask","motcon_controller::MotconControllerTask").
+		periodic(0.1)
+	sonar = task("SonarDriverMicronTask","sonar_driver::SonarDriverMicronTask").
+		periodic(0.01)
+	speed = task("SpeedControllerTask","speed_controller::SpeedControllerTask")
+
+
+	add_default_logger
+
+	if !corba_enabled?
+		browse motcon 
+	end
+end
+
