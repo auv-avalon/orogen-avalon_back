@@ -1,14 +1,14 @@
 name "avalon_back"
 version "0.1"
 
-using_task_library "dfkiimu"
+using_task_library "dfki_imu"
 using_task_library "igc_driver"
 using_task_library "motcon_controller"
 using_task_library "sonar_driver"
 using_task_library "speed_controller"
 
 deployment "avalon_back_application" do
-	dfkiimu = task("DfkiImuTask","dfkiimu::DfkiImuTask")
+	dfkiimu = task("DfkiImuTask","dfki_imu::Task")
 	igc = task("IgcImuTask","igc_driver::IgcImuTask")
 	motcon = task("MotconControllerTask","motcon_controller::MotconControllerTask").
 		periodic(0.1)
