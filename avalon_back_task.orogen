@@ -15,7 +15,8 @@ deployment "avalon_back_application" do
 		periodic(0.1)
 	sonar = task("SonarDriverMicronTask","sonar_driver::SonarDriverMicronTask")
 	speed = task("SpeedControllerTask","speed_controller::SpeedControllerTask")
-	position = task("PositionControllerTask","position_controller::PositionControllerTask")
+	position = task("PositionControllerTask","position_controller::PositionControllerTask").
+		periodic(0.01)
 
 
 	add_default_logger
