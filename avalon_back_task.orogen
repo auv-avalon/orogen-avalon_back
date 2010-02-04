@@ -6,15 +6,16 @@ using_task_library "igc_driver"
 using_task_library "motcon_controller"
 using_task_library "sonar_driver"
 using_task_library "speed_controller"
+using_task_library "position_controller"
 
 deployment "avalon_back_application" do
 	dfkiimu = task("DfkiImuTask","dfki_imu::Task")
 	igc = task("IgcImuTask","igc_driver::IgcImuTask")
 	motcon = task("MotconControllerTask","motcon_controller::MotconControllerTask").
 		periodic(0.1)
-	sonar = task("SonarDriverMicronTask","sonar_driver::SonarDriverMicronTask").
-		periodic(0.01)
+	sonar = task("SonarDriverMicronTask","sonar_driver::SonarDriverMicronTask")
 	speed = task("SpeedControllerTask","speed_controller::SpeedControllerTask")
+	position = task("PositionControllerTask","position_controller::PositionControllerTask")
 
 
 	add_default_logger
