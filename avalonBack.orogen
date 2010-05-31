@@ -8,7 +8,7 @@ using_task_library "sonar_driver"
 using_task_library "speed_controller"
 using_task_library "position_controller"
 using_task_library "ifg"
-using_takj_library "acoustic_modem"
+using_task_library "acoustic_modem"
 
 deployment "avalon_back_application" do
 	dfkiimu = task("DfkiImuTask","dfki_imu::Task")
