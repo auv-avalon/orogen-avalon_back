@@ -5,8 +5,7 @@ using_task_library "dfki_imu"
 using_task_library "igc_driver"
 using_task_library "motcon_controller"
 using_task_library "sonar_driver"
-using_task_library "speed_controller"
-using_task_library "position_controller"
+using_task_library "avalon_control"
 using_task_library "ifg"
 using_task_library "acoustic_modem"
 
@@ -15,10 +14,12 @@ deployment "avalon_back_application" do
 	igc = task("IgcImuTask","igc_driver::IgcImuTask")
 	motcon = task("MotconControllerTask","motcon_controller::MotconControllerTask").
 		periodic(0.1)
-	sonar = task("SonarDriverMicronTask","sonar_driver::SonarDriverMicronTask")
-	speed = task("SpeedControllerTask","speed_controller::SpeedControllerTask")
-	position = task("PositionControllerTask","position_controller::PositionControllerTask").
+	sonar = task("SonarDriverMicronTask", "sonar_driver::SonarDriverMicronTask")
+
+	speed    = task("speed_control",     "avalon_control::SpeedControlTask")
+	position = task("motion_control",    "avalon_control::MotionControlTask").
 		periodic(0.01)
+
         ifg = task("IfgImuTask","ifg::Task")
 	acoustics = task("AcousticModemTask", "acoustic_modem::AcousticModemTask")
 
