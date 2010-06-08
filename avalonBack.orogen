@@ -8,6 +8,7 @@ using_task_library "sonar_driver"
 using_task_library "avalon_control"
 using_task_library "ifg"
 using_task_library "acoustic_modem"
+using_task_library 'state_estimator'
 
 deployment 'avalon_control' do
     task("speed_control",  "avalon_control::SpeedControlTask")
