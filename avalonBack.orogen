@@ -13,7 +13,6 @@ using_task_library "motcon_controller"
 using_task_library "avalon_control"
 
 deployment 'avalon_control' do
-    task("speed_control",  "avalon_control::SpeedControlTask")
     task("motion_control", "avalon_control::MotionControlTask")
     task("motcon", "motcon_controller::MotconControllerTask")
     add_default_logger
