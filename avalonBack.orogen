@@ -11,6 +11,8 @@ using_task_library "acoustic_modem"
 
 using_task_library "motcon_controller"
 using_task_library "avalon_control"
+using_task_library "sauce_control"
+using_task_library "pipeline_follower"
 
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
@@ -18,24 +20,10 @@ deployment 'avalon_control' do
     add_default_logger
 end
 
-deployment 'imu' do
-    task("fog", "ifg::Task")
-    task("imu", "dfki_imu::Task")
-    add_default_logger
-end
-
-deployment 'sonar' do
-    task("sonar", "sonar_driver::SonarDriverMicronTask")
-    add_default_logger
-end
-
-deployment 'modem' do
-    task("modem", "acoustic_modem::AcousticModemTask")
-    add_default_logger
-end
-
-deployment 'pose_estimator' do
-    task('pose_estimator', 'state_estimator::Task')
-    add_default_logger
-end
+simple_deployment "fog", "ifg::Task"
+simple_deployment "imu", "dfki_imu::Task"
+simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
+simple_deployment "modem", "acoustic_modem::AcousticModemTask"
+simple_deployment 'pose_estimator', 'state_estimator::Task'
+simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
 
