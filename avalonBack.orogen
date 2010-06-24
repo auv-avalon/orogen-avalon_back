@@ -1,6 +1,7 @@
 name "avalon_back"
 version "0.1"
 
+using_task_library "xsens_imu"
 using_task_library "dfki_imu"
 using_task_library "ifg"
 
@@ -27,6 +28,7 @@ simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
 simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 simple_deployment 'pose_estimator', 'state_estimator::Task'
 simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
+simple_deployment 'xsens','xsens_imu::Task'
 simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
 	realtime.
 	highest_priority
