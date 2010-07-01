@@ -22,14 +22,24 @@ deployment 'avalon_control' do
     add_default_logger
 end
 
-simple_deployment "fog", "ifg::Task"
-simple_deployment "imu", "dfki_imu::Task"
 simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
 simple_deployment "modem", "acoustic_modem::AcousticModemTask"
-simple_deployment 'pose_estimator', 'state_estimator::Task'
-simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
-simple_deployment 'xsens','xsens_imu::Task'
+
+simple_deployment("fog", "ifg::Task").
+	realtime.
+	highest_priority
+simple_deployment("imu", "dfki_imu::Task").
+	realtime.
+	highest_priority
+simple_deployment('pose_estimator', 'state_estimator::Task').
+	realtime.
+	highest_priority
+simple_deployment('xsens','xsens_imu::Task').
+	realtime.
+	highest_priority
 simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
 	realtime.
 	highest_priority
+
+simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
 
