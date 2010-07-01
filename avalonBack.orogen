@@ -15,6 +15,7 @@ using_task_library "motcon_controller"
 using_task_library "avalon_control"
 using_task_library "sauce_control"
 using_task_library "pipeline_follower"
+using_task_library "sonar_servoing"
 
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
@@ -42,4 +43,5 @@ simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
 	highest_priority
 
 simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
+simple_deployment 'sonar_servoing', 'sonar_servoing::Task'
 
