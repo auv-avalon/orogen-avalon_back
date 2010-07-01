@@ -1,6 +1,3 @@
 <package>
-  <depend package="drivers/igc" />
-  <depend package="drivers/motcon" />
-  <depend package="drivers/micron" />
-  <depend package="drivers/lowSpeedCommunication" />
+	<depend package="modules/sonar_servoing" />
 </package>
