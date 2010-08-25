@@ -15,11 +15,18 @@ using_task_library "motcon_controller"
 using_task_library "avalon_control"
 using_task_library "sauce_control"
 using_task_library "pipeline_follower"
+
+using_task_library "can"
+using_task_library "hbridge"
+
 #using_task_library "sonar_servoing"
+
 
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
-    task("motcon", "motcon_controller::MotconControllerTask")
+#   task("motcon", "motcon_controller::MotconControllerTask")
+    task("hbridge", "hbridge::Task")
+		task("can", "can::Task")
     add_default_logger
 end
 
