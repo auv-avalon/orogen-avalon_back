@@ -24,7 +24,7 @@ using_task_library "hbridge"
 
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
-#   task("motcon", "motcon_controller::MotconControllerTask")
+    task("motcon", "motcon_controller::MotconControllerTask")
     task("hbridge", "hbridge::Task")
 		task("can", "can::Task")
     add_default_logger
