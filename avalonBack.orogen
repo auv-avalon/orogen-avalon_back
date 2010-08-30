@@ -1,6 +1,7 @@
 name "avalon_back"
 version "0.1"
 
+using_task_library "low_level_driver"
 using_task_library "xsens_imu"
 using_task_library "dfki_imu"
 using_task_library "ifg"
@@ -25,11 +26,15 @@ using_task_library "hbridge"
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
     task("motcon", "motcon_controller::MotconControllerTask")
-    task("hbridge", "hbridge::Task")
-		task("can", "can::Task")
+    task("hbridge", "hbridge::Task").
+        triggered.
+                realtime.
+                priority(90)
+    task("can", "can::Task")
     add_default_logger
 end
 
+simple_deployment "low_level", "low_level_driver::LowLevelTask"
 simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
 simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 
