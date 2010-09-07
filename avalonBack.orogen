@@ -3,19 +3,19 @@ version "0.1"
 
 using_task_library "low_level_driver"
 using_task_library "xsens_imu"
-using_task_library "dfki_imu"
+#using_task_library "dfki_imu"
 using_task_library "ifg"
 
 using_task_library 'state_estimator'
-using_task_library 'avalon_pose_estimator'
+#using_task_library 'avalon_pose_estimator'
 
 using_task_library "sonar_driver"
-using_task_library "acoustic_modem"
+#using_task_library "acoustic_modem"
 
-using_task_library "motcon_controller"
+#using_task_library "motcon_controller"
 using_task_library "avalon_control"
-using_task_library "sauce_control"
-using_task_library "pipeline_follower"
+#using_task_library "sauce_control"
+#using_task_library "pipeline_follower"
 
 using_task_library "can"
 using_task_library "hbridge"
@@ -25,7 +25,7 @@ using_task_library "hbridge"
 
 deployment 'avalon_control' do
     task("motion_control", "avalon_control::MotionControlTask")
-    task("motcon", "motcon_controller::MotconControllerTask")
+#    task("motcon", "motcon_controller::MotconControllerTask")
     task("position_control", "avalon_control::PositionControlTask")
     task("hbridge", "hbridge::Task").
         triggered.
@@ -37,25 +37,25 @@ end
 
 simple_deployment "low_level", "low_level_driver::LowLevelTask"
 simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
-simple_deployment "modem", "acoustic_modem::AcousticModemTask"
+#simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 
 simple_deployment("fog", "ifg::Task").
 	realtime.
 	highest_priority
-simple_deployment("imu", "dfki_imu::Task").
-	realtime.
-	highest_priority
+#simple_deployment("imu", "dfki_imu::Task").
+#	realtime.
+#	highest_priority
 simple_deployment('pose_estimator', 'state_estimator::Task').
 	realtime.
 	highest_priority
 simple_deployment('xsens','xsens_imu::Task').
 	realtime.
 	highest_priority
-simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
-	realtime.
-	highest_priority
+#simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
+#	realtime.
+#	highest_priority
 
-simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
+#simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
 #simple_deployment 'sonar_servoing', 'sonar_servoing::Task'
-simple_deployment 'buoy_cutter', 'sauce_control::BuoyCutterTask'
+#simple_deployment 'buoy_cutter', 'sauce_control::BuoyCutterTask'
 
