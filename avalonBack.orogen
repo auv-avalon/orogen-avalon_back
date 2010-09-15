@@ -28,7 +28,8 @@ deployment 'avalon_control' do
 #    task("motcon", "motcon_controller::MotconControllerTask")
     task("position_control", "avalon_control::PositionControlTask")
     task("hbridge", "hbridge::Task").
-        triggered.
+        #triggered. #try for avalon periodic to handle settings correct
+	periodic(0.001).
                 realtime.
                 priority(90)
     task("can", "can::Task")
