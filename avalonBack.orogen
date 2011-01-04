@@ -4,6 +4,7 @@ version "0.1"
 using_task_library "low_level_driver"
 using_task_library "xsens_imu"
 #using_task_library "dfki_imu"
+
 using_task_library "dsp3000"
 
 using_task_library 'state_estimator'
@@ -13,11 +14,11 @@ using_task_library "sonar_driver"
 #using_task_library "acoustic_modem"
 
 #using_task_library "motcon_controller"
-using_task_library "avalonControl"
+using_task_library "avalon_control"
 #using_task_library "sauce_control"
 #using_task_library "pipeline_follower"
 
-using_task_library "can"
+using_task_library "canbus"
 using_task_library "hbridge"
 
 #using_task_library "sonar_servoing"
@@ -32,7 +33,7 @@ deployment 'avalon_control' do
 	periodic(0.001).
                 realtime.
                 priority(90)
-    task("can", "can::Task")
+    task("can", "canbus::Task")
     add_default_logger
 end
 
@@ -40,7 +41,7 @@ simple_deployment "low_level", "low_level_driver::LowLevelTask"
 simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
 #simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 
-simple_deployment("fog", "ifg::Task").
+simple_deployment("fog", "dsp3000::Task").
 	realtime.
 	highest_priority
 #simple_deployment("imu", "dfki_imu::Task").
