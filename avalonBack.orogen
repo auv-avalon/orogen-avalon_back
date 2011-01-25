@@ -38,7 +38,7 @@ deployment 'avalon_control' do
 end
 
 simple_deployment "low_level", "low_level_driver::LowLevelTask"
-simple_deployment "sonar", "sonar_driver::SonarDriverMicronTask"
+simple_deployment "sonar", "sonar_driver::Task"
 #simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 
 simple_deployment("fog", "dsp3000::Task").
