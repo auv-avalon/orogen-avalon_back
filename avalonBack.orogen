@@ -39,7 +39,7 @@ using_task_library "hbridge"
 #
 #simple_deployment "low_level", "low_level_driver::LowLevelTask"
 #
-#simple_deployment "sonar", "sonar_driver::Task"
+#simple_deployment "sonar", "sonar_driver::Micron"
 #
 ##simple_deployment "modem", "acoustic_modem::AcousticModemTask"
 #
@@ -80,13 +80,6 @@ deployment 'avalon_back_all' do
     task("sonar", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
-	highest_priority
-    task("xsens","xsens_imu::Task").
-    	realtime.
-	highest_priority
-    task('pose_estimator', 'state_estimator::Task').
-    	realtime.
-	highest_priority
-
     add_default_logger
 end
+
