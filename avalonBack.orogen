@@ -24,9 +24,51 @@ using_task_library "hbridge"
 #using_task_library "sonar_servoing"
 
 
-deployment 'avalon_control' do
+#deployment 'avalon_control' do
+#    task("motion_control", "avalon_control::MotionControlTask")
+##    task("motcon", "motcon_controller::MotconControllerTask")
+#    task("position_control", "avalon_control::PositionControlTask")
+#    task("hbridge", "hbridge::Task").
+#        #triggered. #try for avalon periodic to handle settings correct
+##	periodic(0.001).
+#                realtime.
+#                priority(90)
+#    task("can", "canbus::Task")
+#    add_default_logger
+#end
+#
+#simple_deployment "low_level", "low_level_driver::LowLevelTask"
+#
+#simple_deployment "sonar", "sonar_driver::Task"
+#
+##simple_deployment "modem", "acoustic_modem::AcousticModemTask"
+#
+#simple_deployment("fog", "dsp3000::Task").
+#	realtime.
+#	highest_priority
+##simple_deployment("imu", "dfki_imu::Task").
+##	realtime.
+##	highest_priority
+#simple_deployment('pose_estimator', 'state_estimator::Task').
+#	realtime.
+#	highest_priority
+#simple_deployment('xsens','xsens_imu::Task').
+#	realtime.
+#	highest_priority
+##simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
+##	realtime.
+##	highest_priority
+#
+##simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
+##simple_deployment 'sonar_servoing', 'sonar_servoing::Task'
+##simple_deployment 'buoy_cutter', 'sauce_control::BuoyCutterTask'
+#
+##
+#
+
+
+deployment 'avalon_back_all' do
     task("motion_control", "avalon_control::MotionControlTask")
-#    task("motcon", "motcon_controller::MotconControllerTask")
     task("position_control", "avalon_control::PositionControlTask")
     task("hbridge", "hbridge::Task").
         #triggered. #try for avalon periodic to handle settings correct
@@ -34,30 +76,17 @@ deployment 'avalon_control' do
                 realtime.
                 priority(90)
     task("can", "canbus::Task")
+    task("low_level", "low_level_driver::LowLevelTask")
+    task("sonar", "sonar_driver::Micron")
+    task("fog","dsp3000::Task").
+    	realtime.
+	highest_priority
+    task("xsens","xsens_imu::Task").
+    	realtime.
+	highest_priority
+    task('pose_estimator', 'state_estimator::Task').
+    	realtime.
+	highest_priority
+
     add_default_logger
 end
-
-simple_deployment "low_level", "low_level_driver::LowLevelTask"
-simple_deployment "sonar", "sonar_driver::Task"
-#simple_deployment "modem", "acoustic_modem::AcousticModemTask"
-
-simple_deployment("fog", "dsp3000::Task").
-	realtime.
-	highest_priority
-#simple_deployment("imu", "dfki_imu::Task").
-#	realtime.
-#	highest_priority
-simple_deployment('pose_estimator', 'state_estimator::Task').
-	realtime.
-	highest_priority
-simple_deployment('xsens','xsens_imu::Task').
-	realtime.
-	highest_priority
-#simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
-#	realtime.
-#	highest_priority
-
-#simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
-#simple_deployment 'sonar_servoing', 'sonar_servoing::Task'
-#simple_deployment 'buoy_cutter', 'sauce_control::BuoyCutterTask'
-
