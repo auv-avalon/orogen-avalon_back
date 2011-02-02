@@ -70,16 +70,23 @@ using_task_library "hbridge"
 deployment 'avalon_back_all' do
     task("motion_control", "avalon_control::MotionControlTask")
     task("position_control", "avalon_control::PositionControlTask")
+    task('pose_estimator', 'state_estimator::Task').
+    	realtime.
+	highest_priority
+    task('xsens','xsens_imu::Task').
+    	realtime.
+	highest_priority
     task("hbridge", "hbridge::Task").
         #triggered. #try for avalon periodic to handle settings correct
 	periodic(0.001).
-                realtime.
-                priority(90)
+        realtime.
+        priority(90)
     task("can", "canbus::Task")
     task("low_level", "low_level_driver::LowLevelTask")
     task("sonar", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
+	highest_priority
     add_default_logger
 end
 
