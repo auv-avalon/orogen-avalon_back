@@ -20,6 +20,10 @@ using_task_library "avalon_control"
 
 using_task_library "canbus"
 using_task_library "hbridge"
+using_task_library "controldev"
+using_task_library "sysmon"
+using_task_library "modem_can"
+using_task_library "raw_control_command_converter"
 
 #using_task_library "sonar_servoing"
 
@@ -67,7 +71,7 @@ using_task_library "hbridge"
 #
 
 
-deployment 'avalon_back_all' do
+deployment 'avalon_back' do
     task("motion_control", "avalon_control::MotionControlTask")
     task("position_control", "avalon_control::PositionControlTask")
     task('pose_estimator', 'state_estimator::Task').
@@ -87,6 +91,10 @@ deployment 'avalon_back_all' do
     task("fog","dsp3000::Task").
     	realtime.
 	highest_priority
+    task("controldev", "controldev::Remote")
+    task("sysmon","sysmon::Task")
+    task("modem","modem_can::Task")
+    task("controlconverter","raw_control_command_converter::Task")
     add_default_logger
 end
 
