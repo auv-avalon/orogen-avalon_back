@@ -74,27 +74,36 @@ using_task_library "raw_control_command_converter"
 deployment 'avalon_back' do
     task("motion_control", "avalon_control::MotionControlTask")
     task("position_control", "avalon_control::PositionControlTask")
+
     task('pose_estimator', 'state_estimator::Task').
     	realtime.
-	highest_priority
+	priority(50)
+
     task('xsens','xsens_imu::Task').
     	realtime.
-	highest_priority
+	priority(75)
+
     task("hbridge", "hbridge::Task").
-        #triggered. #try for avalon periodic to handle settings correct
 	periodic(0.001).
         realtime.
         priority(90)
-    task("can", "canbus::Task")
+
+    task("can", "canbus::Task").
+    	periodic(0.001).
+	realtime.
+	priority(92)
+
     task("low_level", "low_level_driver::LowLevelTask")
     task("sonar", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
-	highest_priority
+	priority(75)
+
     task("controldev", "controldev::Remote")
     task("sysmon","sysmon::Task")
     task("modem","modem_can::Task")
     task("controlconverter","raw_control_command_converter::Task")
-    add_default_logger
+    add_default_logger.
+    	periodic(0.01)
 end
 
