@@ -24,6 +24,7 @@ using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
+using_task_library "movement_experiment"
 
 #using_task_library "sonar_servoing"
 
@@ -105,5 +106,9 @@ deployment 'avalon_back' do
     task("controlconverter","raw_control_command_converter::Task")
     add_default_logger.
     	periodic(0.01)
+
+    task("movement_experiment","movement_experiment::Task").
+    	periodic(0.1)
+
 end
 
