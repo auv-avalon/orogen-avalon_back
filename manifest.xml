@@ -3,6 +3,7 @@
 	<depend package="drivers/orogen/xsens_imu" /> 
 	<depend package="drivers/orogen/micron" /> 
 	<depend package="drivers/orogen/canbus" /> 
+	<depend package="tools/image_preprocessing" /> 
 
 <!--	<depend package="modules/sonar_servoing" /> REMOVED because it donsn't compile since sauc-e -->
 </package>
