@@ -4,6 +4,7 @@ version "0.1"
 using_task_library "low_level_driver"
 using_task_library "xsens_imu"
 #using_task_library "dfki_imu"
+using_task_library "camera"
 
 using_task_library "dsp3000"
 
@@ -26,8 +27,15 @@ using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
 using_task_library "movement_experiment"
 using_task_library "ekf_slam"
+using_task_library "image_preprocessing"
+using_task_library "testbed_servoing"
+using_task_library "buoy_detector"
+
 
 #using_task_library "sonar_servoing"
+
+using_task_library "buoy_detector"
+using_task_library "testbed_servoing"
 
 
 #deployment 'avalon_control' do
@@ -71,6 +79,19 @@ using_task_library "ekf_slam"
 #
 ##
 #
+
+deployment "front_camera" do
+    task("front_camera", "camera::CameraTask")
+    task("image_preprocessing","image_preprocessing::Task")
+    task("buoy_detector","buoy_detector::Task")
+    task("testbed_servoing","testbed_servoing::Task")
+    add_default_logger
+end
+
+simple_deployment("buoy_detector", "buoy_detector::Task").
+	periodic(0.1)
+
+simple_deployment "testbed_servoing", "testbed_servoing::Task"
 
 
 deployment 'avalon_back' do
