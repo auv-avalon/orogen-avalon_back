@@ -19,6 +19,7 @@ using_task_library "avalon_control"
 #using_task_library "sauce_control"
 #using_task_library "pipeline_follower"
 
+using_task_library "motion_estimation"
 using_task_library "canbus"
 using_task_library "hbridge"
 using_task_library "controldev"
@@ -90,6 +91,7 @@ using_task_library "ekf_slam"
 
 deployment 'avalon_back' do
     task("motion_control", "avalon_control::MotionControlTask")
+    task("motion_estimation", "motion_estimation::Task")
     task("position_control", "avalon_control::PositionControlTask")
 
     task('pose_estimator', 'state_estimator::Task').
