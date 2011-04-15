@@ -1,5 +1,5 @@
 <package>
-	<depend package="avalon/orogen/lowLevelDriver" /> 
+	<!--depend package="avalon/orogen/lowLevelDriver" /--> 
 	<depend package="drivers/orogen/xsens_imu" /> 
 	<depend package="drivers/orogen/micron" /> 
 	<depend package="drivers/orogen/canbus" /> 
