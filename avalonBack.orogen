@@ -1,7 +1,7 @@
 name "avalon_back"
 version "0.1"
 
-using_task_library "low_level_driver"
+#using_task_library "low_level_driver"
 using_task_library "xsens_imu"
 #using_task_library "dfki_imu"
 using_task_library "camera"
@@ -112,7 +112,7 @@ deployment 'avalon_back' do
 	realtime.
 	priority(92)
 
-    task("low_level", "low_level_driver::LowLevelTask")
+#    task("low_level", "low_level_driver::LowLevelTask")
     task("sonar", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
