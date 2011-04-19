@@ -113,6 +113,7 @@ deployment 'avalon_back' do
 	priority(92)
 
 #    task("low_level", "low_level_driver::LowLevelTask")
+    task("profiling","sonar_driver::Profiling")
     task("sonar", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
