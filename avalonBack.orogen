@@ -115,11 +115,12 @@ deployment 'avalon_back' do
 #    task("low_level", "low_level_driver::LowLevelTask")
     task("profiling","sonar_driver::Profiling")
     task("sonar", "sonar_driver::Micron")
+    task("sonar_rear", "sonar_driver::Micron")
     task("fog","dsp3000::Task").
     	realtime.
 	priority(75)
 
-    task("controldev", "controldev::Remote")
+    task("controldev", "controldev::Remote") #Never use this periodic, otherwise it not working correcly
     task("sysmon","sysmon::Task")
     task("modem","modem_can::Task")
     task("controlconverter_movement","raw_control_command_converter::Movement")
