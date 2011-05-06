@@ -37,6 +37,10 @@ using_task_library "ekf_slam"
 #using_task_library "buoy_detector"
 #using_task_library "testbed_servoing"
 
+using_task_library "sonardetector"
+using_task_library "object_servoing"
+using_task_library "auv_rel_pos_controller"
+
 
 #deployment 'avalon_control' do
 #    task("motion_control", "avalon_control::MotionControlTask")
@@ -133,5 +137,18 @@ deployment 'avalon_back' do
     task("movement_experiment","movement_experiment::Task").
     	periodic(0.1)
 
+end
+
+deployment 'wall_servoing' do
+    add_default_logger.
+    	periodic(0.01)
+
+    task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
+    	periodic(0.01)
+
+    task("object_servoing", "object_servoing::Task")
+
+    task("sonardetector", "sonardetector::Task").
+        periodic(0.1)
 end
 
