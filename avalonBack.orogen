@@ -4,7 +4,6 @@ version "0.1"
 #using_task_library "low_level_driver"
 using_task_library "xsens_imu"
 #using_task_library "dfki_imu"
-using_task_library "camera"
 
 using_task_library "dsp3000"
 
