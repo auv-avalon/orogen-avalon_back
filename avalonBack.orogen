@@ -25,7 +25,7 @@ using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
-using_task_library "movement_experiment"
+#using_task_library "movement_experiment"
 using_task_library "ekf_slam"
 #using_task_library "image_preprocessing"
 #using_task_library "testbed_servoing"
@@ -134,8 +134,8 @@ deployment 'avalon_back' do
     add_default_logger.
     	periodic(0.01)
 
-    task("movement_experiment","movement_experiment::Task").
-    	periodic(0.1)
+#    task("movement_experiment","movement_experiment::Task").
+#    	periodic(0.1)
 
 end
 
