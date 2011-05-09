@@ -12,5 +12,6 @@
 	<depend package="avalon/orogen/stateEstimator" /> 
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
+	<depend package="avalon/orogen/modemCanReader" /> 
 <!--	<depend package="modules/sonar_servoing" /> REMOVED because it donsn't compile since sauc-e -->
 </package>
