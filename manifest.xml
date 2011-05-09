@@ -7,6 +7,7 @@
 	<depend package="avalon/orogen/motionEstimation" /> 
 	<depend package="avalon/orogen/avalonControl" />
 	<depend package="avalon/orogen/rawControlCommandConverter" />
-	<depend package="avalon/orogen/sonarDetector" />
+	<depend package="avalon/orogen/sonarDetector" /> 
+	<depend package="drivers/orogen/dsp3000" /> 
 <!--	<depend package="modules/sonar_servoing" /> REMOVED because it donsn't compile since sauc-e -->
 </package>
