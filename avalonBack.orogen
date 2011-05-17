@@ -137,16 +137,16 @@ deployment 'avalon_back' do
 #    task("movement_experiment","movement_experiment::Task").
 #    	periodic(0.1)
 
+    task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
+    	periodic(0.01)
+
+    task("object_servoing", "object_servoing::Task")
 end
 
 deployment 'wall_servoing' do
     add_default_logger.
     	periodic(0.01)
 
-    task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
-    	periodic(0.01)
-
-    task("object_servoing", "object_servoing::Task")
 
     task("sonardetector", "sonardetector::Task").
         periodic(0.1)
