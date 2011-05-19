@@ -15,5 +15,6 @@
 	<depend package="avalon/orogen/modemCanReader" /> 
 	<depend package="avalon/orogen/ekfSLAM" /> 
 	<depend package="control/orogen/auv_rel_pos_controller" /> 
+	<depend package="avalon/orogen/rear_sonar_distance_estimator" /> 
 <!--	<depend package="modules/sonar_servoing" /> REMOVED because it donsn't compile since sauc-e -->
 </package>

@@ -40,7 +40,7 @@ using_task_library "ekf_slam"
 using_task_library "sonardetector"
 using_task_library "object_servoing"
 using_task_library "auv_rel_pos_controller"
-
+using_task_library "rear_sonar_distance_estimator"
 
 #deployment 'avalon_control' do
 #    task("motion_control", "avalon_control::MotionControlTask")
@@ -129,7 +129,7 @@ deployment 'avalon_back' do
     task("controlconverter_movement","raw_control_command_converter::Movement")
     task("controlconverter_position","raw_control_command_converter::Position")
     task("ekf_slam","ekf_slam::Task")
-    
+    task("distance_estimator", "rear_sonar_distance_estimator::Task")
     
     add_default_logger.
     	periodic(0.01)
