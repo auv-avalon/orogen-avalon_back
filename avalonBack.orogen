@@ -92,19 +92,8 @@ using_task_library "rear_sonar_distance_estimator"
 #simple_deployment "testbed_servoing", "testbed_servoing::Task"
 
 
-deployment 'avalon_back' do
-    task("motion_control", "avalon_control::MotionControlTask")
-    task("motion_estimation", "motion_estimation::Task")
-    task("position_control", "avalon_control::PositionControlTask")
 
-    task('pose_estimator', 'state_estimator::Task').
-    	realtime.
-	priority(50)
-
-    task('xsens','xsens_imu::Task').
-    	realtime.
-	priority(75)
-
+deployment 'avalon_back_base_control' do
     task("hbridge", "hbridge::Task").
 	periodic(0.001).
         realtime.
@@ -114,22 +103,47 @@ deployment 'avalon_back' do
     	periodic(0.001).
 	realtime.
 	priority(92)
+    
+    task("motion_control", "avalon_control::MotionControlTask")
+    task("motion_estimation", "motion_estimation::Task")
+    task("position_control", "avalon_control::PositionControlTask")
+    
+    add_default_logger.
+    	periodic(0.01)
+end
+
+deployment 'avalon_back_pose_estimation' do
+    task('pose_estimator', 'state_estimator::Task').
+    	realtime.
+	priority(50)
+
+    task('xsens','xsens_imu::Task').
+    	realtime.
+	priority(75)
+    
+    task("fog","dsp3000::Task").
+    	realtime.
+	priority(75)
+    
+    task("ekf_slam","ekf_slam::Task")
+    task("distance_estimator", "rear_sonar_distance_estimator::Task")
+    
+    add_default_logger.
+    	periodic(0.01)
+end
+
+deployment 'avalon_back' do
 
 #    task("low_level", "low_level_driver::LowLevelTask")
     task("profiling","sonar_driver::Profiling")
     task("sonar", "sonar_driver::Micron")
     task("sonar_rear", "sonar_driver::Micron")
-    task("fog","dsp3000::Task").
-    	realtime.
-	priority(75)
 
     task("controldev", "controldev::Remote") #Never use this periodic, otherwise it not working correcly
     task("sysmon","sysmon::Task")
     task("modem","modem_can::Task")
     task("controlconverter_movement","raw_control_command_converter::Movement")
     task("controlconverter_position","raw_control_command_converter::Position")
-    task("ekf_slam","ekf_slam::Task")
-    task("distance_estimator", "rear_sonar_distance_estimator::Task")
     
     add_default_logger.
     	periodic(0.01)
