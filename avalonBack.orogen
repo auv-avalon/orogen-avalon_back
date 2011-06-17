@@ -105,6 +105,7 @@ deployment 'avalon_back_base_control' do
 	priority(92)
     
     task("motion_control", "avalon_control::MotionControlTask")
+    task("motion_feedback", "avalon_control::MotionFeedbackTask")
     task("motion_estimation", "motion_estimation::Task")
     task("position_control", "avalon_control::PositionControlTask")
     
