@@ -38,7 +38,6 @@ using_task_library "ekf_slam"
 #using_task_library "testbed_servoing"
 
 using_task_library "sonardetector"
-using_task_library "object_servoing"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 
@@ -156,8 +155,6 @@ deployment 'avalon_back' do
 
     task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     	periodic(0.01)
-
-    task("object_servoing", "object_servoing::Task")
 end
 
 deployment 'wall_servoing' do
