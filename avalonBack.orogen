@@ -42,6 +42,8 @@ using_task_library "object_servoing"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 
+using_task_library "taskmon"
+
 #deployment 'avalon_control' do
 #    task("motion_control", "avalon_control::MotionControlTask")
 ##    task("motcon", "motcon_controller::MotconControllerTask")
@@ -167,3 +169,4 @@ deployment 'wall_servoing' do
         periodic(0.1)
 end
 
+simple_deployment "taskmon_back", "taskmon::Task"
