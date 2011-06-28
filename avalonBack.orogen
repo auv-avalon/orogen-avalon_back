@@ -1,22 +1,11 @@
 name "avalon_back"
 version "0.1"
 
-#using_task_library "low_level_driver"
 using_task_library "xsens_imu"
-#using_task_library "dfki_imu"
-
 using_task_library "dsp3000"
-
 using_task_library 'state_estimator'
-#using_task_library 'avalon_pose_estimator'
-
 using_task_library "sonar_driver"
-#using_task_library "acoustic_modem"
-
-#using_task_library "motcon_controller"
 using_task_library "avalon_control"
-#using_task_library "sauce_control"
-#using_task_library "pipeline_follower"
 
 using_task_library "motion_estimation"
 using_task_library "canbus"
@@ -25,74 +14,13 @@ using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
-#using_task_library "movement_experiment"
 using_task_library "ekf_slam"
-#using_task_library "image_preprocessing"
-#using_task_library "testbed_servoing"
-#using_task_library "buoy_detector"
-
-
-#using_task_library "sonar_servoing"
-
-#using_task_library "buoy_detector"
-#using_task_library "testbed_servoing"
 
 using_task_library "sonardetector"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 
 using_task_library "taskmon"
-
-#deployment 'avalon_control' do
-#    task("motion_control", "avalon_control::MotionControlTask")
-##    task("motcon", "motcon_controller::MotconControllerTask")
-#    task("position_control", "avalon_control::PositionControlTask")
-#    task("hbridge", "hbridge::Task").
-#        #triggered. #try for avalon periodic to handle settings correct
-##	periodic(0.001).
-#                realtime.
-#                priority(90)
-#    task("can", "canbus::Task")
-#    add_default_logger
-#end
-#
-#simple_deployment "low_level", "low_level_driver::LowLevelTask"
-#
-#simple_deployment "sonar", "sonar_driver::Micron"
-#
-##simple_deployment "modem", "acoustic_modem::AcousticModemTask"
-#
-#simple_deployment("fog", "dsp3000::Task").
-#	realtime.
-#	highest_priority
-##simple_deployment("imu", "dfki_imu::Task").
-##	realtime.
-##	highest_priority
-#simple_deployment('pose_estimator', 'state_estimator::Task').
-#	realtime.
-#	highest_priority
-#simple_deployment('xsens','xsens_imu::Task').
-#	realtime.
-#	highest_priority
-##simple_deployment('avalon_pose_estimator', 'avalon_pose_estimator::Task').
-##	realtime.
-##	highest_priority
-#
-##simple_deployment 'pipeline_follower', 'pipeline_follower::Task'
-##simple_deployment 'sonar_servoing', 'sonar_servoing::Task'
-##simple_deployment 'buoy_cutter', 'sauce_control::BuoyCutterTask'
-#
-##
-#
-
-
-#simple_deployment("buoy_detector", "buoy_detector::Task").
-#	periodic(0.1)
-
-
-#simple_deployment "testbed_servoing", "testbed_servoing::Task"
-
-
 
 deployment 'avalon_back_base_control' do
     task("hbridge", "hbridge::Task").
@@ -105,65 +33,45 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
     
-    task("motion_control", "avalon_control::MotionControlTask")
-    task("motion_feedback", "avalon_control::MotionFeedbackTask")
+    task("motion_control",    "avalon_control::MotionControlTask")
+    task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     task("motion_estimation", "motion_estimation::Task")
-    task("position_control", "avalon_control::PositionControlTask")
     
     add_default_logger.
     	periodic(0.01)
 end
 
-deployment 'avalon_back_pose_estimation' do
-    task('pose_estimator', 'state_estimator::Task').
-    	realtime.
-	priority(50)
+simple_deployment("distance_estimator", "rear_sonar_distance_estimator::Task")
+simple_deployment("ekf_slam","ekf_slam::Task")
+simple_deployment('pose_estimator', 'state_estimator::Task').
+    realtime.
+    priority(50)
 
-    task('xsens','xsens_imu::Task').
-    	realtime.
-	priority(75)
+simple_deployment('xsens','xsens_imu::Task').
+    realtime.
+    priority(75)
+
+simple_deployment("fog","dsp3000::Task").
+    realtime.
+    priority(75)
     
-    task("fog","dsp3000::Task").
-    	realtime.
-	priority(75)
-    
-    task("ekf_slam","ekf_slam::Task")
-    task("distance_estimator", "rear_sonar_distance_estimator::Task")
-    
-    add_default_logger.
-    	periodic(0.01)
-end
+simple_deployment("sonar_profiling","sonar_driver::Profiling")
+simple_deployment("sonar",          "sonar_driver::Micron")
+simple_deployment("sonar_rear",     "sonar_driver::Micron")
 
-deployment 'avalon_back' do
+# Never make it periodic, otherwise it does not work correctly
+simple_deployment("controldev", "controldev::Remote")
 
-#    task("low_level", "low_level_driver::LowLevelTask")
-    task("profiling","sonar_driver::Profiling")
-    task("sonar", "sonar_driver::Micron")
-    task("sonar_rear", "sonar_driver::Micron")
+simple_deployment("sysmon","sysmon::Task")
+simple_deployment("modem","modem_can::Task")
+simple_deployment("controlconverter_movement","raw_control_command_converter::Movement")
+simple_deployment("controlconverter_position","raw_control_command_converter::Position")
 
-    task("controldev", "controldev::Remote") #Never use this periodic, otherwise it not working correcly
-    task("sysmon","sysmon::Task")
-    task("modem","modem_can::Task")
-    task("controlconverter_movement","raw_control_command_converter::Movement")
-    task("controlconverter_position","raw_control_command_converter::Position")
-    
-    add_default_logger.
-    	periodic(0.01)
+simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
+    periodic(0.01)
 
-#    task("movement_experiment","movement_experiment::Task").
-#    	periodic(0.1)
-
-    task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
-    	periodic(0.01)
-end
-
-deployment 'wall_servoing' do
-    add_default_logger.
-    	periodic(0.01)
-
-
-    task("sonardetector", "sonardetector::Task").
-        periodic(0.1)
-end
+simple_deployment("sonardetector", "sonardetector::Task").
+    periodic(0.1)
 
 simple_deployment "taskmon_back", "taskmon::Task"
+
