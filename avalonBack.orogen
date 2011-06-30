@@ -41,9 +41,9 @@ deployment 'avalon_back_base_control' do
     	periodic(0.01)
 end
 
-simple_deployment("distance_estimator", "rear_sonar_distance_estimator::Task")
+simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 simple_deployment("ekf_slam","ekf_slam::Task")
-simple_deployment('pose_estimator', 'state_estimator::Task').
+simple_deployment('orientation_estimator', 'state_estimator::Task').
     realtime.
     priority(50)
 
