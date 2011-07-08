@@ -70,6 +70,7 @@ simple_deployment("controlconverter_position","raw_control_command_converter::Po
 simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
+simple_deployment("classic_wall_detector", "sonar_servoing::Task")
 simple_deployment("wall_detector", "sonardetector::Task")
 simple_deployment "taskmon_back", "taskmon::Task"
 
