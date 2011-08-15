@@ -17,7 +17,7 @@ using_task_library "raw_control_command_converter"
 using_task_library "ekf_slam"
 
 using_task_library "sonardetector"
-using_task_library "sonar_servoing"
+#using_task_library "sonar_servoing"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 
@@ -52,7 +52,7 @@ simple_deployment('xsens','xsens_imu::Task').
     realtime.
     priority(75)
 
-simple_deployment("fog","fog_kvh:Dsp3000").
+simple_deployment("fog","fog_kvh::Dsp3000Task").
     realtime.
     priority(75)
     
@@ -71,7 +71,7 @@ simple_deployment("controlconverter_position","raw_control_command_converter::Po
 simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
-simple_deployment("classic_wall_detector", "sonar_servoing::Task")
+#simple_deployment("classic_wall_detector", "sonar_servoing::Task")
 simple_deployment("wall_detector", "sonardetector::Task")
 simple_deployment "taskmon_back", "taskmon::Task"
 
