@@ -5,10 +5,12 @@
 	<depend package="drivers/orogen/canbus" /> 
 	<!--depend package="tools/image_preprocessing" /> REMOVED ITsbroken --> 
 	<depend package="avalon/orogen/motionEstimation" /> 
+	<depend package="avalon/orogen/depth_reader" /> 
 	<depend package="avalon/orogen/avalonControl" />
 	<depend package="avalon/orogen/rawControlCommandConverter" />
 	<depend package="avalon/orogen/sonarDetector" /> 
 	<depend package="drivers/orogen/fog_kvh" /> 
+	<depend package="drivers/orogen/sonar_blueview" /> 
 	<depend package="avalon/orogen/stateEstimator" /> 
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 

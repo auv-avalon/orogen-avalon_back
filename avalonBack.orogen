@@ -4,8 +4,9 @@ version "0.1"
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'state_estimator'
-using_task_library "sonar_driver"
+using_task_library "sonar_tritech"
 using_task_library "avalon_control"
+using_task_library "depth_reader"
 
 using_task_library "motion_estimation"
 using_task_library "canbus"
@@ -28,6 +29,8 @@ deployment 'avalon_back_base_control' do
 	periodic(0.001).
         realtime.
         priority(90)
+
+    task("depth","depth_reader::Task")
 
     task("can", "canbus::Task").
     	periodic(0.001).
@@ -56,9 +59,9 @@ simple_deployment("fog","fog_kvh::Dsp3000Task").
     realtime.
     priority(75)
     
-simple_deployment("sonar_profiling","sonar_driver::Profiling")
-simple_deployment("sonar",          "sonar_driver::Micron")
-simple_deployment("sonar_rear",     "sonar_driver::Micron")
+simple_deployment("sonar_profiling","sonar_tritech::Profiling")
+simple_deployment("sonar",          "sonar_tritech::Micron")
+simple_deployment("sonar_rear",     "sonar_tritech::Micron")
 
 # Never make it periodic, otherwise it does not work correctly
 simple_deployment("controldev", "controldev::Remote")
