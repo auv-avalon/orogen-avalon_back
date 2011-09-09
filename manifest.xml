@@ -8,10 +8,11 @@
 	<depend package="avalon/orogen/depth_reader" /> 
 	<depend package="avalon/orogen/avalonControl" />
 	<depend package="avalon/orogen/rawControlCommandConverter" />
-	<depend package="avalon/orogen/sonarDetector" /> 
+	<!--depend package="avalon/orogen/sonarDetector" /--> 
 	<depend package="drivers/orogen/fog_kvh" /> 
 	<depend package="drivers/orogen/sonar_blueview" /> 
 	<depend package="avalon/orogen/stateEstimator" /> 
+        <depend package="avalon/orogen/piplineTracker" /> 
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
 	<depend package="avalon/orogen/modemCanReader" /> 

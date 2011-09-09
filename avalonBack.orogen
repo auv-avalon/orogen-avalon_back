@@ -16,11 +16,13 @@ using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
 using_task_library "ekf_slam"
+using_task_library "pipline_tracker"
 
-using_task_library "sonardetector"
+#using_task_library "sonardetector"
 #using_task_library "sonar_servoing"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
+using_task_library "sonar_blueview"
 
 using_task_library "taskmon"
 
@@ -45,6 +47,8 @@ deployment 'avalon_back_base_control' do
     	periodic(0.01)
 end
 
+simple_deployment("sonar_blueview", "sonar_blueview::Task").
+    periodic(0.1)
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 simple_deployment("ekf_slam","ekf_slam::Task")
 simple_deployment('orientation_estimator', 'state_estimator::Task').
@@ -59,6 +63,8 @@ simple_deployment("fog","fog_kvh::Dsp3000Task").
     realtime.
     priority(75)
     
+simple_deployment("pipeline_tracker","pipline_tracker::Task")
+
 simple_deployment("sonar_profiling","sonar_tritech::Profiling")
 simple_deployment("sonar",          "sonar_tritech::Micron")
 simple_deployment("sonar_rear",     "sonar_tritech::Micron")
@@ -75,6 +81,6 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 #simple_deployment("classic_wall_detector", "sonar_servoing::Task")
-simple_deployment("wall_detector", "sonardetector::Task")
+#simple_deployment("wall_detector", "sonardetector::Task")
 simple_deployment "taskmon_back", "taskmon::Task"
 
