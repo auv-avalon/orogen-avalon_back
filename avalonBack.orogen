@@ -15,7 +15,7 @@ using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
-using_task_library "ekf_slam"
+#using_task_library "ekf_slam"
 using_task_library "pipline_tracker"
 
 #using_task_library "sonardetector"
@@ -50,7 +50,7 @@ end
 simple_deployment("sonar_blueview", "sonar_blueview::Task").
     periodic(0.1)
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
-simple_deployment("ekf_slam","ekf_slam::Task")
+#simple_deployment("ekf_slam","ekf_slam::Task")
 simple_deployment('orientation_estimator', 'state_estimator::Task').
     realtime.
     priority(50)
