@@ -1,6 +1,9 @@
 name "avalon_back"
 version "0.1"
 
+using_library "opencv" #otherwise linking will fail
+
+
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'state_estimator'
