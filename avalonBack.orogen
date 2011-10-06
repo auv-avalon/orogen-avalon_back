@@ -71,6 +71,7 @@ simple_deployment("pipeline_tracker","pipline_tracker::Task")
 simple_deployment("sonar_profiling","sonar_tritech::Profiling")
 simple_deployment("sonar",          "sonar_tritech::Micron")
 simple_deployment("sonar_rear",     "sonar_tritech::Micron")
+simple_deployment("sonar_profiling_micron",     "sonar_tritech::Micron")
 
 # Never make it periodic, otherwise it does not work correctly
 simple_deployment("controldev", "controldev::Remote")
