@@ -7,6 +7,7 @@ using_library "opencv" #otherwise linking will fail
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'state_estimator'
+using_task_library 'orientation_estimator'
 using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
@@ -54,7 +55,11 @@ simple_deployment("sonar_blueview", "sonar_blueview::Task").
     periodic(0.1)
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 simple_deployment("ekf_slam","ekf_slam::Task")
-simple_deployment('orientation_estimator', 'state_estimator::Task').
+simple_deployment('state_estimator', 'state_estimator::Task').
+    realtime.
+    priority(50)
+
+simple_deployment('orientation_estimator', 'orientation_estimator::Task').
     realtime.
     priority(50)
 

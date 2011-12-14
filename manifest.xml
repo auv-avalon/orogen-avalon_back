@@ -11,7 +11,8 @@
 	<!--depend package="avalon/orogen/sonarDetector" /--> 
 	<depend package="drivers/orogen/fog_kvh" /> 
 	<depend package="drivers/orogen/sonar_blueview" /> 
-	<depend package="avalon/orogen/stateEstimator" /> 
+        <depend package="avalon/orogen/stateEstimator" />
+        <depend package="dagon/orogen/orientation_estimator" />
         <depend package="avalon/orogen/piplineTracker" /> 
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
