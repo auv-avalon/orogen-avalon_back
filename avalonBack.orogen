@@ -20,7 +20,6 @@ using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
 using_task_library "ekf_slam"
 using_task_library "pipline_tracker"
-using_task_library "auv_control"
 
 #using_task_library "sonardetector"
 #using_task_library "sonar_servoing"
@@ -43,10 +42,6 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
     
-    task("motion_control_new","auv_control::Task").
-        periodic(0.005).
-        realtime
-
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     task("motion_estimation", "motion_estimation::Task")
