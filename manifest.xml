@@ -13,6 +13,8 @@
 	<depend package="drivers/orogen/sonar_blueview" /> 
         <depend package="avalon/orogen/stateEstimator" />
         <depend package="dagon/orogen/orientation_estimator" />
+        <depend package="dagon/uwv_dynamic_model" />
+        <depend package="dagon/orogen/uwv_dynamic_model" />
         <depend package="avalon/orogen/piplineTracker" /> 
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
