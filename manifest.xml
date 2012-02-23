@@ -19,7 +19,8 @@
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
 	<depend package="avalon/orogen/modemCanReader" /> 
-        <depend package="avalon/orogen/ekfSLAM" /> 
+        <depend package="avalon/orogen/ekfSLAM" />
+        <depend package="slam/orogen/eras_position_estimator" />
 	<depend package="control/orogen/auv_rel_pos_controller" /> 
 	<depend package="avalon/orogen/rear_sonar_distance_estimator" /> 
         <depend package="drivers/orogen/taskmon" />
