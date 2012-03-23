@@ -4,7 +4,7 @@
 	<depend package="drivers/orogen/sonar_tritech" /> 
 	<depend package="drivers/orogen/canbus" /> 
 	<!--depend package="tools/image_preprocessing" /> REMOVED ITsbroken --> 
-	<depend package="avalon/orogen/motionEstimation" /> 
+        <!--depend package="avalon/orogen/motionEstimation" />  -->
 	<depend package="avalon/orogen/depth_reader" /> 
 	<depend package="avalon/orogen/avalonControl" />
 	<depend package="avalon/orogen/rawControlCommandConverter" />
@@ -15,7 +15,7 @@
         <depend package="dagon/orogen/orientation_estimator" />
         <depend package="dagon/uwv_dynamic_model" />
         <depend package="dagon/orogen/uwv_dynamic_model" />
-        <depend package="avalon/orogen/piplineTracker" /> 
+        <!-- <depend package="avalon/orogen/piplineTracker" /> -->
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
 	<depend package="avalon/orogen/modemCanReader" /> 
@@ -24,7 +24,7 @@
 	<depend package="control/orogen/auv_rel_pos_controller" /> 
 	<depend package="avalon/orogen/rear_sonar_distance_estimator" /> 
         <depend package="drivers/orogen/taskmon" />
-        <depend package="avalon/orogen/piplineTracker" />
+        <!-- <depend package="avalon/orogen/piplineTracker" /> -->
         <depend package="avalon/orogen/wall_servoing" /> 
         <depend package="avalon/orogen/sonar_feature_estimator" />
 </package>
