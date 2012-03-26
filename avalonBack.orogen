@@ -62,7 +62,7 @@ simple_deployment('state_estimator', 'state_estimator::Task').
     realtime.
     priority(50)
 
-simple_deployment('orientation_estimator', 'orientation_estimator::Task').
+simple_deployment('orientation_estimator', 'orientation_estimator::BaseEstimator').
     realtime.
     priority(50)
 
