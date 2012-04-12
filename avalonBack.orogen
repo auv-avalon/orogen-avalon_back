@@ -12,7 +12,7 @@ using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
 
-#using_task_library "motion_estimation"
+using_task_library "motion_estimation"
 using_task_library "canbus"
 using_task_library "hbridge"
 using_task_library "controldev"

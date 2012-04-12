@@ -5,7 +5,7 @@
 	<depend package="drivers/orogen/canbus" /> 
 	<depend package="avalon/orogen/battery_management" />
 	<!--depend package="tools/image_preprocessing" /> REMOVED ITsbroken --> 
-        <!--depend package="avalon/orogen/motionEstimation" />  -->
+        <depend package="avalon/orogen/motionEstimation" />
 	<depend package="avalon/orogen/depth_reader" /> 
 	<depend package="avalon/orogen/avalonControl" />
 	<depend package="avalon/orogen/rawControlCommandConverter" />
