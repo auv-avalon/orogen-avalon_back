@@ -95,6 +95,12 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+
+deployment "dual_wall_servoing" do
+    task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
+    task("dual_wall_servoing", "wall_servoing::DualSonarServoing")
+end
+
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
 
