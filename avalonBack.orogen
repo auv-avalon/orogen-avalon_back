@@ -30,6 +30,7 @@ using_task_library "rear_sonar_distance_estimator"
 using_task_library "sonar_blueview"
 using_task_library "uwv_dynamic_model"
 #using_task_library "battery_management"
+using_task_library "uw_particle_localization"
 
 using_task_library "taskmon"
 
@@ -105,3 +106,4 @@ simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
 
 simple_deployment "uwv_dynamic_model", "uwv_dynamic_model::Task"
+simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
