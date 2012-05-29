@@ -27,7 +27,7 @@ using_task_library "wall_servoing"
 using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
-using_task_library "sonar_blueview"
+#using_task_library "sonar_blueview"
 using_task_library "uwv_dynamic_model"
 #using_task_library "battery_management"
 using_task_library "uw_particle_localization"
@@ -55,8 +55,8 @@ deployment 'avalon_back_base_control' do
     	periodic(0.01)
 end
 
-simple_deployment("sonar_blueview", "sonar_blueview::Task").
-    periodic(0.1)
+#simple_deployment("sonar_blueview", "sonar_blueview::Task").
+#    periodic(0.1)
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 simple_deployment("ekf_slam","ekf_slam::Task")
 #simple_deployment("eras_position_estimator", "eras_position_estimator::Task")
