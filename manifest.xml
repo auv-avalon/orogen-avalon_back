@@ -11,7 +11,7 @@
 	<depend package="avalon/orogen/rawControlCommandConverter" />
 	<!--depend package="avalon/orogen/sonarDetector" /--> 
 	<depend package="drivers/orogen/fog_kvh" /> 
-	<depend package="drivers/orogen/sonar_blueview" /> 
+        <!-- <depend package="drivers/orogen/sonar_blueview" />  -->
         <depend package="avalon/orogen/stateEstimator" />
         <depend package="slam/orogen/orientation_estimator" />
         <depend package="dagon/uwv_dynamic_model" />
@@ -28,4 +28,5 @@
         <!-- <depend package="avalon/orogen/piplineTracker" /> -->
         <depend package="avalon/orogen/wall_servoing" /> 
         <depend package="avalon/orogen/sonar_feature_estimator" />
+        <depend package="avalon/orogen/auv_waypoint_navigator" />
 </package>
