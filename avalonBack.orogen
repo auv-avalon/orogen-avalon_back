@@ -29,7 +29,7 @@ using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 #using_task_library "sonar_blueview"
 using_task_library "uwv_dynamic_model"
-#using_task_library "battery_management"
+using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
 
@@ -51,6 +51,8 @@ deployment 'avalon_back_base_control' do
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     #task("motion_estimation", "motion_estimation::Task")
+
+    task("battery_management","battery_management::Task")
 
     add_default_logger.
     	periodic(0.01)
@@ -91,7 +93,6 @@ simple_deployment("sysmon","sysmon::Task")
 simple_deployment("modem","modem_can::Task")
 simple_deployment("controlconverter_movement","raw_control_command_converter::Movement")
 simple_deployment("controlconverter_position","raw_control_command_converter::Position")
-#simple_deployment("battery_management","battery_management::Task")
 
 simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
