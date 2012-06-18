@@ -52,8 +52,6 @@ deployment 'avalon_back_base_control' do
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     #task("motion_estimation", "motion_estimation::Task")
 
-    task("battery_management","battery_management::Task")
-
     add_default_logger.
     	periodic(0.01)
 end
@@ -110,3 +108,4 @@ simple_deployment("taskmon_back", "taskmon::Task")
 simple_deployment "uwv_dynamic_model", "uwv_dynamic_model::Task"
 simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
 simple_deployment "auv_waypoint_navigator", "auv_waypoint_navigator::Task"
+simple_deployment "battery_management", "battery_management::Task"
