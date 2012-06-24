@@ -109,7 +109,8 @@ deployment 'pingersearch' do
     task("pinger_search", "pingersearch::PingerSearch")
     add_default_logger
 end
-simple_deployment("audio_reader", "audio_reader::Task")
+simple_deployment("audio_reader", "audio_reader::Task").
+    periodic(0.05)
 
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
