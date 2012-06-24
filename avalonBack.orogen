@@ -33,6 +33,7 @@ using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
 using_task_library "pingersearch"
+using_task_library "audio_reader"
 
 using_task_library "taskmon"
 
@@ -108,6 +109,7 @@ deployment 'pingersearch' do
     task("pinger_search", "pingersearch::PingerSearch")
     add_default_logger
 end
+simple_deployment("audio_reader", "audio_reader::Task")
 
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
