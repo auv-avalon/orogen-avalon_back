@@ -44,6 +44,7 @@ deployment 'avalon_back_base_control' do
         priority(90)
 
     task("depth","depth_reader::Task")
+    task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
 
     task("can", "canbus::Task").
     	periodic(0.001).
