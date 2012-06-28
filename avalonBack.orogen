@@ -3,6 +3,9 @@ version "0.1"
 
 using_library "opencv" #otherwise linking will fail
 
+#using_task_library "motion_estimation"
+#using_task_library "ekf_slam"
+#using_task_library "sonar_blueview"
 
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
@@ -12,22 +15,17 @@ using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
 
-using_task_library "motion_estimation"
 using_task_library "canbus"
 using_task_library "hbridge"
 using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
-using_task_library "ekf_slam"
-#using_task_library "pipline_tracker"
-#using_task_library "eras_position_estimator"
 
 using_task_library "wall_servoing"
 using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
-#using_task_library "sonar_blueview"
 using_task_library "uwv_dynamic_model"
 using_task_library "battery_management"
 using_task_library "uw_particle_localization"
@@ -59,11 +57,8 @@ deployment 'avalon_back_base_control' do
     	periodic(0.01)
 end
 
-#simple_deployment("sonar_blueview", "sonar_blueview::Task").
-#    periodic(0.1)
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
-simple_deployment("ekf_slam","ekf_slam::Task")
-#simple_deployment("eras_position_estimator", "eras_position_estimator::Task")
+# simple_deployment("ekf_slam","ekf_slam::Task")
 simple_deployment('state_estimator', 'state_estimator::Task').
     realtime.
     priority(50)
