@@ -92,7 +92,7 @@ simple_deployment("sonar_rear",     "sonar_tritech::Micron")
 simple_deployment("controldev", "controldev::Remote")
 
 simple_deployment("sysmon","sysmon::Task")
-simple_deployment("modem","modem_can::Task").periodic(0.01)
+simple_deployment("modem","modem_can::Task").periodic(0.1)
 
 simple_deployment("controlconverter_movement","raw_control_command_converter::Movement")
 simple_deployment("controlconverter_position","raw_control_command_converter::Position")
