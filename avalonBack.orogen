@@ -69,6 +69,10 @@ simple_deployment('orientation_estimator', 'orientation_estimator::BaseEstimator
     realtime.
     priority(50)
 
+simple_deployment('ikf_orientation_estimator', 'orientation_estimator::IKFEstimator').
+    realtime.
+    priority(50)
+
 simple_deployment('xsens','xsens_imu::Task').
     realtime.
     priority(75)
