@@ -16,6 +16,7 @@ using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
 
+using_task_library "asv_detector"
 using_task_library "canbus"
 using_task_library "hbridge"
 using_task_library "controldev"
@@ -96,6 +97,8 @@ simple_deployment("modem","modem_can::Task").periodic(0.1)
 
 simple_deployment("controlconverter_movement","raw_control_command_converter::Movement")
 simple_deployment("controlconverter_position","raw_control_command_converter::Position")
+
+simple_deployment "asv_detector", "asv_detector::Task"
 
 simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
