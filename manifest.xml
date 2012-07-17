@@ -1,5 +1,6 @@
 <package>
-	<!--depend package="avalon/orogen/lowLevelDriver" /--> 
+    <!--depend package="avalon/orogen/lowLevelDriver" /--> 
+        <depend package="avalon/orogen/asv_detector"/>
         <depend package="avalon/orogen/gold_piezo" /> 
 	<depend package="drivers/orogen/xsens_imu" /> 
 	<depend package="drivers/orogen/sonar_tritech" /> 
