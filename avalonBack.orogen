@@ -28,7 +28,7 @@ using_task_library "wall_servoing"
 using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
-using_task_library "uwv_dynamic_model"
+#using_task_library "uwv_dynamic_model" #baut nicht 09.08.2012
 using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
@@ -123,7 +123,7 @@ simple_deployment("audio_reader", "audio_reader::Task").
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
 
-simple_deployment "uwv_dynamic_model", "uwv_dynamic_model::Task"
+#simple_deployment "uwv_dynamic_model", "uwv_dynamic_model::Task" #baut nicht 09.08.2012
 simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
 simple_deployment("auv_waypoint_navigator", "auv_waypoint_navigator::Task").
     periodic(0.01)
