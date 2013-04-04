@@ -36,6 +36,7 @@ using_task_library "pingersearch"
 using_task_library "audio_reader"
 
 using_task_library "taskmon"
+using_task_library "auv_control"
 
 deployment 'avalon_back_base_control' do
     task("hbridge", "hbridge::Task").
@@ -54,6 +55,12 @@ deployment 'avalon_back_base_control' do
 
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
+    
+    task("force_torque_controller", "auv_control::AUVForceTorqueController")
+    task("aligned_velocity_controller", "auv_control::AUVAlignedVelocityController")
+    task("aligned_controller", "auv_control::AUVAlignedController")
+    task("world_controller", "auv_control::AUVWorldController")
+
     #task("motion_estimation", "motion_estimation::Task")
 
     add_default_logger.
