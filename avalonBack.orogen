@@ -60,6 +60,7 @@ deployment 'avalon_back_base_control' do
     task("aligned_velocity_controller", "auv_control::AUVAlignedVelocityController")
     task("aligned_controller", "auv_control::AUVAlignedController")
     task("world_controller", "auv_control::AUVWorldController")
+    task("relative_controller", "auv_control::AUVRelativeController")
 
     #task("motion_estimation", "motion_estimation::Task")
 
