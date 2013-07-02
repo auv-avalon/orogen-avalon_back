@@ -56,11 +56,11 @@ deployment 'avalon_back_base_control' do
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     
-    task("force_torque_controller", "auv_control::AUVForceTorqueController")
-    task("aligned_velocity_controller", "auv_control::AUVAlignedVelocityController")
-    task("aligned_controller", "auv_control::AUVAlignedController")
-    task("world_controller", "auv_control::AUVWorldController")
-    task("relative_controller", "auv_control::AUVRelativeController")
+    task("force_torque_controller", "auv_control::ForceTorqueController")
+    task("aligned_velocity_controller", "auv_control::AlignedVelocityController")
+#    task("aligned_controller", "auv_control::AlignedController") #There is no AlignedController
+    task("world_controller", "auv_control::WorldController")
+    task("relative_controller", "auv_control::RelativeController")
 
     #task("motion_estimation", "motion_estimation::Task")
 

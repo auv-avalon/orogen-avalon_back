@@ -33,4 +33,5 @@
         <depend package="avalon/orogen/auv_waypoint_navigator" />
         <depend package="avalon/orogen/pingersearch" />
         <depend package="drivers/orogen/audio_reader" />
+        <depend package="control/orogen/auv_control" /> 
 </package>
