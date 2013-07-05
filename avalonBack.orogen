@@ -39,11 +39,21 @@ using_task_library "taskmon"
 using_task_library "auv_control"
 
 deployment 'avalon_back_base_control' do
-    task("hbridge", "hbridge::Task").
+    task("hbridge_reader", "hbridge::SensorReader").
 	periodic(0.001).
         realtime.
         priority(90)
-
+    task("hbridge_writer", "hbridge::CommandWriter").
+	periodic(0.001).
+        realtime.
+        priority(90)
+    #task("hbridge", "hbridge::Task").
+#	periodic(0.001).
+ #       realtime.
+ #       priority(90)
+    task("fake_writer", "avalon_control::FakeWriter").
+	periodic(0.1)
+#
     task("depth","depth_reader::Task")
     task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
     task("piezo","gold_piezo::Task")
