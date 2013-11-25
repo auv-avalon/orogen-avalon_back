@@ -63,14 +63,11 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
 
-    task("motion_control",    "avalon_control::MotionControlTask")
-    task("motion_feedback",   "avalon_control::MotionFeedbackTask")
-    
-    task("force_torque_controller", "auv_control::ForceTorqueController")
-    task("aligned_velocity_controller", "auv_control::AlignedVelocityController")
-    task("aligned_controller", "auv_control::AlignedPositionController") #There is no AlignedController
-    task("world_controller", "auv_control::WorldController")
-    task("relative_controller", "auv_control::RelativeController")
+    task("world_to_aligned", "auv_control::WorldToAligned")
+    task("aligned_position_controller", "auv_control::PIDController")
+    task("aligned_velocity_controller", "auv_control::WorldToAligned")
+    task("aligned_to_body", "auv_control::AlignedToBody")
+    task("acceleration_controller", "auv_control::AccelerationController")
 
     #task("motion_estimation", "motion_estimation::Task")
 
