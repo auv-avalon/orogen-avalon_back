@@ -145,4 +145,3 @@ simple_deployment("taskmon_back", "taskmon::Task")
 simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
 simple_deployment("auv_waypoint_navigator", "auv_waypoint_navigator::Task").
     periodic(0.01)
-simple_deployment "battery_management", "battery_management::Task"
