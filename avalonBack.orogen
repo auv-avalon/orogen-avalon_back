@@ -51,6 +51,8 @@ deployment 'avalon_back_base_control' do
 	periodic(0.001).
         realtime.
         priority(90)
+    task("fake_rel_writer", "avalon_control::RelFakeWriter").
+	periodic(0.1)
     task("fake_writer", "avalon_control::FakeWriter").
 	periodic(0.1)
 #
