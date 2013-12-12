@@ -55,6 +55,7 @@ deployment 'avalon_back_base_control' do
 	periodic(0.1)
 #
     task("depth","depth_reader::Task")
+    task("depth_rear", "depth_reader::Task")
     task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
     task("piezo","gold_piezo::Task")
 
@@ -71,7 +72,7 @@ deployment 'avalon_back_base_control' do
     task("aligned_controller", "auv_control::AlignedPositionController") #There is no AlignedController
     task("world_controller", "auv_control::WorldController")
     task("relative_controller", "auv_control::RelativeController")
-
+    task("state_estimator", "state_estimator::Task")
     #task("motion_estimation", "motion_estimation::Task")
 
     add_default_logger.
