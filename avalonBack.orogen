@@ -65,7 +65,7 @@ deployment 'avalon_back_base_control' do
 
     task("world_to_aligned", "auv_control::WorldToAligned")
     task("aligned_position_controller", "auv_control::PIDController")
-    task("aligned_velocity_controller", "auv_control::WorldToAligned")
+    task("aligned_velocity_controller", "auv_control::PIDController")
     task("aligned_to_body", "auv_control::AlignedToBody")
     task("acceleration_controller", "auv_control::AccelerationController")
 
