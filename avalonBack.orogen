@@ -65,6 +65,11 @@ deployment 'avalon_back_base_control' do
     	periodic(0.001).
 	realtime.
 	priority(92)
+    
+    task("can1", "canbus::Task").
+    	periodic(0.001).
+	realtime.
+	priority(92)
 
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
@@ -76,6 +81,7 @@ deployment 'avalon_back_base_control' do
     task("relative_controller", "auv_control::RelativeController")
     task("state_estimator", "state_estimator::Task")
     #task("motion_estimation", "motion_estimation::Task")
+    task("sysmon","sysmon::Task")
 
     add_default_logger.
     	periodic(0.01)
