@@ -29,7 +29,7 @@ using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
 #using_task_library "uwv_dynamic_model" #baut nicht 09.08.2012
-using_task_library "battery_management"
+#using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
 using_task_library "pingersearch"
@@ -51,14 +51,22 @@ deployment 'avalon_back_base_control' do
 	periodic(0.001).
         realtime.
         priority(90)
+    task("fake_rel_writer", "avalon_control::RelFakeWriter").
+	periodic(0.1)
     task("fake_writer", "avalon_control::FakeWriter").
 	periodic(0.1)
 #
     task("depth","depth_reader::Task")
+    task("depth_rear", "depth_reader::Task")
     task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
     task("piezo","gold_piezo::Task")
 
     task("can", "canbus::Task").
+    	periodic(0.001).
+	realtime.
+	priority(92)
+    
+    task("can1", "canbus::Task").
     	periodic(0.001).
 	realtime.
 	priority(92)
@@ -69,7 +77,11 @@ deployment 'avalon_back_base_control' do
     task("aligned_to_body", "auv_control::AlignedToBody")
     task("acceleration_controller", "auv_control::AccelerationController")
 
+    task("motion_control",    "avalon_control::MotionControlTask")
+    task("motion_feedback",   "avalon_control::MotionFeedbackTask")
+    
     #task("motion_estimation", "motion_estimation::Task")
+    task("sysmon","sysmon::Task")
 
     add_default_logger.
     	periodic(0.01)
@@ -142,4 +154,3 @@ simple_deployment("taskmon_back", "taskmon::Task")
 simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
 simple_deployment("auv_waypoint_navigator", "auv_waypoint_navigator::Task").
     periodic(0.01)
-simple_deployment "battery_management", "battery_management::Task"
