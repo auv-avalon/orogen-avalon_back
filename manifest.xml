@@ -31,7 +31,7 @@
         <depend package="avalon/orogen/wall_servoing" /> 
         <depend package="avalon/orogen/sonar_feature_estimator" />
         <depend package="avalon/orogen/auv_waypoint_navigator" />
-        <depend package="avalon/orogen/pingersearch" />
-        <depend package="drivers/orogen/audio_reader" />
+        <!-- <depend package="avalon/orogen/pingersearch" />-->
+        <!-- <depend package="drivers/orogen/audio_reader" />-->
         <depend package="control/orogen/auv_control" /> 
 </package>

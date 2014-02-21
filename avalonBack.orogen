@@ -59,7 +59,7 @@ deployment 'avalon_back_base_control' do
     task("depth","depth_reader::Task")
     task("depth_rear", "depth_reader::Task")
     task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
-    task("piezo","gold_piezo::Task")
+#    task("piezo","gold_piezo::Task")
 
     task("can", "canbus::Task").
     	periodic(0.001).
@@ -71,14 +71,32 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
 
+    task("waypoint_navigator", "auv_control::WaypointNavigator").
+    periodic(0.01)
+    
+    task("world_to_aligned", "auv_control::WorldToAligned").
+    periodic(0.01)
+
+    task("aligned_position_controller", "auv_control::PIDController").
+    periodic(0.01)
+
+    task("aligned_velocity_controller", "auv_control::PIDController").
+    periodic(0.01)
+
+    task("aligned_to_body", "auv_control::AlignedToBody").
+    periodic(0.01)
+
+    task("acceleration_controller", "auv_control::AccelerationController").
+    periodic(0.01)
+
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     
-    task("force_torque_controller", "auv_control::ForceTorqueController")
-    task("aligned_velocity_controller", "auv_control::AlignedVelocityController")
-    task("aligned_controller", "auv_control::AlignedPositionController") #There is no AlignedController
-    task("world_controller", "auv_control::WorldController")
-    task("relative_controller", "auv_control::RelativeController")
+#    task("force_torque_controller", "auv_control::ForceTorqueController")
+#    task("aligned_velocity_controller", "auv_control::AlignedVelocityController")
+#    task("aligned_controller", "auv_control::AlignedPositionController") #There is no AlignedController
+#    task("world_controller", "auv_control::WorldController")
+#    task("relative_controller", "auv_control::RelativeController")
     task("state_estimator", "state_estimator::Task")
     #task("motion_estimation", "motion_estimation::Task")
     task("sysmon","sysmon::Task")
@@ -139,13 +157,13 @@ deployment "dual_wall_servoing" do
     task("dual_wall_servoing", "wall_servoing::DualSonarServoing")
 end
 
-deployment 'pingersearch' do
-    task("angle_estimation", "pingersearch::AngleEstimation")
-    task("pinger_search", "pingersearch::PingerSearch")
-    add_default_logger
-end
-simple_deployment("audio_reader", "audio_reader::Task").
-    periodic(0.05)
+#deployment 'pingersearch' do
+#    task("angle_estimation", "pingersearch::AngleEstimation")
+#    task("pinger_search", "pingersearch::PingerSearch")
+#    add_default_logger
+#end
+#simple_deployment("audio_reader", "audio_reader::Task").
+#    periodic(0.05)
 
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
