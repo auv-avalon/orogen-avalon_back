@@ -38,10 +38,6 @@ using_task_library "audio_reader"
 using_task_library "taskmon"
 using_task_library "auv_control"
 
-#Currently only deployment projects does not link
-task_context "Task" do
-end
-
 deployment 'avalon_back_base_control' do
     task("hbridge_reader", "hbridge::SensorReader").
 	periodic(0.001).
