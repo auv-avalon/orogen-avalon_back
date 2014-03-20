@@ -89,6 +89,7 @@ deployment 'avalon_back_base_control' do
     task("acceleration_controller", "auv_control::AccelerationController").
     periodic(0.01)
 
+    task("position_control",    "avalon_control::PositionControlTask")
     task("motion_control",    "avalon_control::MotionControlTask")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     
