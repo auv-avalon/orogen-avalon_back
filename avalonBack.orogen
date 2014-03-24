@@ -37,6 +37,7 @@ using_task_library "audio_reader"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
+using_task_library "lights"
 
 deployment 'avalon_back_base_control' do
     task("hbridge_reader", "hbridge::SensorReader").
@@ -152,6 +153,7 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+simple_deployment("lights", "lights::Lights")
 
 deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
@@ -170,6 +172,11 @@ simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")
 
 #simple_deployment "uwv_dynamic_model", "uwv_dynamic_model::Task" #baut nicht 09.08.2012
-simple_deployment "uw_particle_localization", "uw_particle_localization::Task"
-simple_deployment("auv_waypoint_navigator", "auv_waypoint_navigator::Task").
+deployment "localization" do 
+    task "uw_particle_localization", "uw_particle_localization::Task"
+    
+    task("auv_waypoint_navigator", "auv_waypoint_navigator::Task").
     periodic(0.01)
+
+    task("motion_model","uw_particle_localization::MotionModel")
+end
