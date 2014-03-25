@@ -83,6 +83,8 @@ deployment 'avalon_back_base_control' do
 
     task("aligned_velocity_controller", "auv_control::PIDController").
     periodic(0.01)
+    
+    task "orientation_correction", "uw_particle_localization::OrientationCorrection"
 
     task("aligned_to_body", "auv_control::AlignedToBody").
     periodic(0.01)
