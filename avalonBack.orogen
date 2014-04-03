@@ -75,6 +75,9 @@ deployment 'avalon_back_base_control' do
     task("waypoint_navigator", "auv_control::WaypointNavigator").
     periodic(0.01)
     
+    task("constand_command", "auv_control::ConstantCommand").
+    periodic(0.01)
+    
     task("world_to_aligned", "auv_control::WorldToAligned").
     periodic(0.01)
 
@@ -84,6 +87,8 @@ deployment 'avalon_back_base_control' do
     task("aligned_velocity_controller", "auv_control::PIDController").
     periodic(0.01)
     
+    task("optimal_heading_controller", "auv_control::OptimalHeadingController").
+    periodic(0.01)
 
     task("aligned_to_body", "auv_control::AlignedToBody").
     periodic(0.01)
