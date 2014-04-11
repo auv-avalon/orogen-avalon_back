@@ -98,6 +98,7 @@ deployment 'avalon_back_base_control' do
 
     task("position_control",    "avalon_control::PositionControlTask")
     task("motion_control",    "avalon_control::MotionControlTask")
+    task("trajectory_follower",    "avalon_control::TrajectoryFollower")
     task("motion_feedback",   "avalon_control::MotionFeedbackTask")
     
 #    task("force_torque_controller", "auv_control::ForceTorqueController")
