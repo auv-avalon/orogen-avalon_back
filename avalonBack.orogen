@@ -189,4 +189,6 @@ deployment "localization" do
     periodic(0.01)
 
     task("motion_model","uw_particle_localization::MotionModel")
+
+    add_default_logger
 end
