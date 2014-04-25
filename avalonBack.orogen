@@ -39,6 +39,9 @@ using_task_library "taskmon"
 using_task_library "auv_control"
 using_task_library "lights"
 
+using_task_library "line_scanner"
+using_task_library "pipeline_inspection"
+
 deployment 'avalon_back_base_control' do
     task("hbridge_reader", "hbridge::SensorReader").
 	periodic(0.001).
@@ -191,4 +194,13 @@ deployment "localization" do
     task("motion_model","uw_particle_localization::MotionModel")
 
     add_default_logger
+end
+
+deployment "pipeline_laser_inspection" do
+
+   task "line_scanner", "line_scanner::Task"
+
+   task "inspection", "pipeline_inspection::Inspection"
+
+   add_default_logger
 end
