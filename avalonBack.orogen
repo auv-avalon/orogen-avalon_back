@@ -7,10 +7,8 @@ using_library "opencv" #otherwise linking will fail
 #using_task_library "ekf_slam"
 #using_task_library "sonar_blueview"
 
-using_task_library "gold_piezo"
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
-using_task_library 'state_estimator'
 using_task_library 'orientation_estimator'
 using_task_library "sonar_tritech"
 using_task_library "avalon_control"
@@ -32,8 +30,6 @@ using_task_library "rear_sonar_distance_estimator"
 #using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
-using_task_library "pingersearch"
-using_task_library "audio_reader"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
@@ -63,7 +59,6 @@ deployment 'avalon_back_base_control' do
     task("depth","depth_reader::Task")
     task("depth_rear", "depth_reader::Task")
     task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
-#    task("piezo","gold_piezo::Task")
 
     task("can", "canbus::Task").
     	periodic(0.001).
@@ -109,7 +104,6 @@ deployment 'avalon_back_base_control' do
 #    task("aligned_controller", "auv_control::AlignedPositionController") #There is no AlignedController
 #    task("world_controller", "auv_control::WorldController")
 #    task("relative_controller", "auv_control::RelativeController")
-    task("state_estimator", "state_estimator::Task")
     #task("motion_estimation", "motion_estimation::Task")
     task("sysmon","sysmon::Task")
 
@@ -122,9 +116,6 @@ end
 
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 # simple_deployment("ekf_slam","ekf_slam::Task")
-simple_deployment('state_estimator', 'state_estimator::Task').
-    realtime.
-    priority(50)
 
 simple_deployment('orientation_estimator', 'orientation_estimator::BaseEstimator').
     realtime.
@@ -172,14 +163,6 @@ deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
     task("dual_wall_servoing", "wall_servoing::DualSonarServoing")
 end
-
-#deployment 'pingersearch' do
-#    task("angle_estimation", "pingersearch::AngleEstimation")
-#    task("pinger_search", "pingersearch::PingerSearch")
-#    add_default_logger
-#end
-#simple_deployment("audio_reader", "audio_reader::Task").
-#    periodic(0.05)
 
 simple_deployment("sonar_feature_estimator", "sonar_feature_estimator::Task")
 simple_deployment("taskmon_back", "taskmon::Task")

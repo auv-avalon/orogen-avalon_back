@@ -2,8 +2,7 @@
     <!--depend package="avalon/orogen/lowLevelDriver" /--> 
         <depend package="avalon/orogen/lights"/>
         <depend package="avalon/orogen/asv_detector"/>
-        <depend package="avalon/orogen/gold_piezo" /> 
-	<depend package="drivers/orogen/xsens_imu" /> 
+        <depend package="drivers/orogen/xsens_imu" /> 
 	<depend package="drivers/orogen/sonar_tritech" /> 
 	<depend package="drivers/orogen/canbus" /> 
 	<!-- depend package="avalon/orogen/battery_management" / Not installed anymore-->
@@ -15,7 +14,6 @@
 	<!--depend package="avalon/orogen/sonarDetector" /--> 
 	<depend package="drivers/orogen/fog_kvh" /> 
         <!-- <depend package="drivers/orogen/sonar_blueview" />  -->
-        <depend package="avalon/orogen/stateEstimator" />
         <depend package="slam/orogen/orientation_estimator" />
         <!--depend package="dagon/uwv_dynamic_model" / baut nicht 09.08.2012-->
         <!--depend package="dagon/orogen/uwv_dynamic_model" /-->
