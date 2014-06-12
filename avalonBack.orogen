@@ -32,7 +32,6 @@ using_task_library "auv_waypoint_navigator"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
-using_task_library "lights"
 
 using_task_library "line_scanner"
 using_task_library "pipeline_inspection"
@@ -153,7 +152,6 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
-simple_deployment("lights", "lights::Lights")
 
 deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
