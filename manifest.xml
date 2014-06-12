@@ -1,7 +1,6 @@
 <package>
     <!--depend package="avalon/orogen/lowLevelDriver" /--> 
         <depend package="avalon/orogen/lights"/>
-        <depend package="avalon/orogen/asv_detector"/>
         <depend package="drivers/orogen/xsens_imu" /> 
 	<depend package="drivers/orogen/sonar_tritech" /> 
 	<depend package="drivers/orogen/canbus" /> 
