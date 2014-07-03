@@ -151,7 +151,14 @@ simple_deployment("controlconverter_position","raw_control_command_converter::Po
 simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
-simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+#simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+
+deployment "wall_servoing" do
+    task("wall_servoing", "WallServoing")
+    task("servoing_wall_detector", "WallDetector")
+    task("obstacle_wall_detector", "WallDetector")i
+end
+
 
 deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
