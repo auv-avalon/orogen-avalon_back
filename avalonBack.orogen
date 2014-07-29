@@ -7,6 +7,7 @@ using_library "opencv" #otherwise linking will fail
 #using_task_library "ekf_slam"
 #using_task_library "sonar_blueview"
 
+using_task_library "auv_helper"
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'orientation_estimator'
@@ -57,7 +58,7 @@ deployment 'avalon_back_base_control' do
 #
     task("depth","depth_reader::Task")
     task("depth_rear", "depth_reader::Task")
-    task("depth_orientation_fusion","depth_reader::depth_and_orientation_fusion")
+    task("depth_orientation_fusion","auv_helper::depth_and_orientation_fusion")
 
     task("can", "canbus::Task").
     	periodic(0.001).
