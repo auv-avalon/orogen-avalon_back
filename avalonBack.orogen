@@ -24,6 +24,7 @@ using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
 
 using_task_library "wall_servoing"
+using_task_library "structure_servoing"
 using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
@@ -161,6 +162,7 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+simple_deployment("structure_servoing", "structure_servoing::Task")
 
 deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")

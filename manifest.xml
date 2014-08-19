@@ -28,6 +28,7 @@
         <depend package="drivers/orogen/taskmon" />
         <!-- <depend package="avalon/orogen/piplineTracker" /> -->
         <depend package="auv_avalon/orogen/wall_servoing" /> 
+        <depend package="avalon/orogen/structure_servoing" /> 
         <depend package="auv_avalon/orogen/sonar_feature_estimator" />
         <depend package="avalon/orogen/auv_waypoint_navigator" />
         <!-- <depend package="avalon/orogen/pingersearch" />-->
