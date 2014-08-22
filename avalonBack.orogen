@@ -41,11 +41,11 @@ using_task_library "pipeline_inspection"
 
 deployment 'avalon_back_base_control' do
     task("hbridge_reader", "hbridge::SensorReader").
-	periodic(0.001).
+	periodic(0.01).
         realtime.
         priority(90)
     task("hbridge_writer", "hbridge::CommandWriter").
-	periodic(0.001).
+	periodic(0.01).
         realtime.
         priority(90)
 #    task("hbridge", "hbridge::Task").
@@ -71,8 +71,7 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
 
-    task("waypoint_navigator", "auv_control::WaypointNavigator").
-    periodic(0.01)
+    task("waypoint_navigator", "auv_control::WaypointNavigator")
     
     task("constand_command", "auv_control::ConstantCommand").
     periodic(0.01)
@@ -83,23 +82,17 @@ deployment 'avalon_back_base_control' do
     task("constand_command_body", "auv_control::ConstantCommand").
     periodic(0.01)
     
-    task("world_to_aligned", "auv_control::WorldToAligned").
-    periodic(0.01)
+    task("world_to_aligned", "auv_control::WorldToAligned")
 
-    task("aligned_position_controller", "auv_control::PIDController").
-    periodic(0.01)
+    task("aligned_position_controller", "auv_control::PIDController")
 
-    task("aligned_velocity_controller", "auv_control::PIDController").
-    periodic(0.01)
+    task("aligned_velocity_controller", "auv_control::PIDController")
     
-    task("optimal_heading_controller", "auv_control::OptimalHeadingController").
-    periodic(0.01)
+    task("optimal_heading_controller", "auv_control::OptimalHeadingController")
 
-    task("aligned_to_body", "auv_control::AlignedToBody").
-    periodic(0.01)
+    task("aligned_to_body", "auv_control::AlignedToBody")
 
-    task("acceleration_controller", "auv_control::AccelerationController").
-    periodic(0.01)
+    task("acceleration_controller", "auv_control::AccelerationController")
 
     task("position_control",    "avalon_control::PositionControlTask")
     task("motion_control",    "avalon_control::MotionControlTask")
