@@ -14,6 +14,7 @@
 	<depend package="drivers/orogen/fog_kvh" /> 
         <!-- <depend package="drivers/orogen/sonar_blueview" />  -->
         <depend package="slam/orogen/orientation_estimator" />
+        <depend package="slam/orogen/pose_estimation" />
         <depend package="slam/orogen/auv_helper" />
         <!--depend package="dagon/uwv_dynamic_model" / baut nicht 09.08.2012-->
         <!--depend package="dagon/orogen/uwv_dynamic_model" /-->

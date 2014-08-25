@@ -11,6 +11,7 @@ using_task_library "auv_helper"
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'orientation_estimator'
+using_task_library 'pose_estimation'
 using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
@@ -185,3 +186,6 @@ deployment "pipeline_laser_inspection" do
 
    add_default_logger
 end
+
+simple_deployment("pose_estimator", "pose_estimation::UWPoseEstimator").
+    periodic(0.01)
