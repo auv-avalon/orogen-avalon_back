@@ -33,6 +33,7 @@ using_task_library "rear_sonar_distance_estimator"
 #using_task_library "battery_management"
 using_task_library "uw_particle_localization"
 using_task_library "auv_waypoint_navigator"
+using_task_library "wall_orientation_correction"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
@@ -123,9 +124,9 @@ simple_deployment('orientation_estimator', 'orientation_estimator::BaseEstimator
     realtime.
     priority(50)
 
-simple_deployment('ikf_orientation_estimator', 'orientation_estimator::IKFEstimator').
-    realtime.
-    priority(50)
+#simple_deployment('ikf_orientation_estimator', 'orientation_estimator::IKFEstimator').
+#    realtime.
+#    priority(50)
 
 simple_deployment('xsens','xsens_imu::Task').
     realtime.
@@ -183,6 +184,27 @@ deployment "pipeline_laser_inspection" do
    task "line_scanner", "line_scanner::Task"
 
    task "inspection", "pipeline_inspection::Inspection"
+
+   add_default_logger
+end
+
+deployment 'initialize_orientation_estimation' do
+
+   task("initial_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
+   task "estimate_wall_orientation", "wall_orientation_correction::Task"
+
+   add_default_logger
+end
+
+deployment 'ikf_orientation_estimation' do
+   task("ikf_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
+   task "orientation_in_map", "wall_orientation_correction::OrientationInMap"
 
    add_default_logger
 end

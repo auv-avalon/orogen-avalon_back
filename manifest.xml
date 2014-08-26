@@ -36,5 +36,6 @@
         <!-- <depend package="drivers/orogen/audio_reader" />-->
         <depend package="control/orogen/auv_control" />
 	<depend package="image_processing/orogen/line_scanner" />
-	<depend package="image_processing/orogen/pipeline_inspection" /> 
+	<depend package="image_processing/orogen/pipeline_inspection" />
+        <depend package="auv_avalon/orogen/wall_orientation_correction" />  
 </package>
