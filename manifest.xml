@@ -23,6 +23,7 @@
 	<depend package="avalon/orogen/modemCanReader" /> 
         <!-- <depend package="avalon/orogen/ekfSLAM" /> -->
         <depend package="auv_avalon/orogen/uw_particle_localization" />
+        <depend package="auv_avalon/orogen/sonar_feature_detector" />
 	<depend package="control/orogen/auv_rel_pos_controller" /> 
 	<depend package="avalon/orogen/rear_sonar_distance_estimator" /> 
         <depend package="drivers/orogen/taskmon" />

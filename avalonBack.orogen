@@ -30,6 +30,7 @@ using_task_library "rear_sonar_distance_estimator"
 #using_task_library "uwv_dynamic_model" #baut nicht 09.08.2012
 #using_task_library "battery_management"
 using_task_library "uw_particle_localization"
+using_task_library "sonar_feature_detector"
 using_task_library "auv_waypoint_navigator"
 
 using_task_library "taskmon"
@@ -178,6 +179,8 @@ deployment "localization" do
     periodic(0.01)
 
     task("motion_model","uw_particle_localization::MotionModel")
+    
+    task("sonar_feature_detector", "sonar_feature_detector::Task")
 
     add_default_logger
 end
