@@ -14,6 +14,7 @@
 	<depend package="drivers/orogen/fog_kvh" /> 
         <!-- <depend package="drivers/orogen/sonar_blueview" />  -->
         <depend package="slam/orogen/orientation_estimator" />
+        <depend package="slam/orogen/pose_estimation" />
         <depend package="slam/orogen/auv_helper" />
         <!--depend package="dagon/uwv_dynamic_model" / baut nicht 09.08.2012-->
         <!--depend package="dagon/orogen/uwv_dynamic_model" /-->
@@ -29,11 +30,13 @@
         <depend package="drivers/orogen/taskmon" />
         <!-- <depend package="avalon/orogen/piplineTracker" /> -->
         <depend package="auv_avalon/orogen/wall_servoing" /> 
+        <depend package="avalon/orogen/structure_servoing" /> 
         <depend package="auv_avalon/orogen/sonar_feature_estimator" />
         <depend package="avalon/orogen/auv_waypoint_navigator" />
         <!-- <depend package="avalon/orogen/pingersearch" />-->
         <!-- <depend package="drivers/orogen/audio_reader" />-->
         <depend package="control/orogen/auv_control" />
 	<depend package="image_processing/orogen/line_scanner" />
-	<depend package="image_processing/orogen/pipeline_inspection" /> 
+	<depend package="image_processing/orogen/pipeline_inspection" />
+        <depend package="auv_avalon/orogen/wall_orientation_correction" />  
 </package>

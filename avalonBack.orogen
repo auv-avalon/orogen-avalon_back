@@ -11,6 +11,7 @@ using_task_library "auv_helper"
 using_task_library "xsens_imu"
 using_task_library "fog_kvh"
 using_task_library 'orientation_estimator'
+using_task_library 'pose_estimation'
 using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
@@ -24,6 +25,7 @@ using_task_library "modem_can"
 using_task_library "raw_control_command_converter"
 
 using_task_library "wall_servoing"
+using_task_library "structure_servoing"
 using_task_library "sonar_feature_estimator"
 using_task_library "auv_rel_pos_controller"
 using_task_library "rear_sonar_distance_estimator"
@@ -32,6 +34,7 @@ using_task_library "rear_sonar_distance_estimator"
 using_task_library "uw_particle_localization"
 using_task_library "sonar_feature_detector"
 using_task_library "auv_waypoint_navigator"
+using_task_library "wall_orientation_correction"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
@@ -41,11 +44,11 @@ using_task_library "pipeline_inspection"
 
 deployment 'avalon_back_base_control' do
     task("hbridge_reader", "hbridge::SensorReader").
-	periodic(0.001).
+	periodic(0.01).
         realtime.
         priority(90)
     task("hbridge_writer", "hbridge::CommandWriter").
-	periodic(0.001).
+	periodic(0.01).
         realtime.
         priority(90)
 #    task("hbridge", "hbridge::Task").
@@ -71,8 +74,7 @@ deployment 'avalon_back_base_control' do
 	realtime.
 	priority(92)
 
-    task("waypoint_navigator", "auv_control::WaypointNavigator").
-    periodic(0.01)
+    task("waypoint_navigator", "auv_control::WaypointNavigator")
     
     task("constand_command", "auv_control::ConstantCommand").
     periodic(0.01)
@@ -83,23 +85,17 @@ deployment 'avalon_back_base_control' do
     task("constand_command_body", "auv_control::ConstantCommand").
     periodic(0.01)
     
-    task("world_to_aligned", "auv_control::WorldToAligned").
-    periodic(0.01)
+    task("world_to_aligned", "auv_control::WorldToAligned")
 
-    task("aligned_position_controller", "auv_control::PIDController").
-    periodic(0.01)
+    task("aligned_position_controller", "auv_control::PIDController")
 
-    task("aligned_velocity_controller", "auv_control::PIDController").
-    periodic(0.01)
+    task("aligned_velocity_controller", "auv_control::PIDController")
     
-    task("optimal_heading_controller", "auv_control::OptimalHeadingController").
-    periodic(0.01)
+    task("optimal_heading_controller", "auv_control::OptimalHeadingController")
 
-    task("aligned_to_body", "auv_control::AlignedToBody").
-    periodic(0.01)
+    task("aligned_to_body", "auv_control::AlignedToBody")
 
-    task("acceleration_controller", "auv_control::AccelerationController").
-    periodic(0.01)
+    task("acceleration_controller", "auv_control::AccelerationController")
 
     task("position_control",    "avalon_control::PositionControlTask")
     task("motion_control",    "avalon_control::MotionControlTask")
@@ -129,9 +125,9 @@ simple_deployment('orientation_estimator', 'orientation_estimator::BaseEstimator
     realtime.
     priority(50)
 
-simple_deployment('ikf_orientation_estimator', 'orientation_estimator::IKFEstimator').
-    realtime.
-    priority(50)
+#simple_deployment('ikf_orientation_estimator', 'orientation_estimator::IKFEstimator').
+#    realtime.
+#    priority(50)
 
 simple_deployment('xsens','xsens_imu::Task').
     realtime.
@@ -162,6 +158,7 @@ simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
     periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
+simple_deployment("structure_servoing", "structure_servoing::Task")
 
 deployment "dual_wall_servoing" do
     task("sonar_feature_estimator_2", "sonar_feature_estimator::Task")
@@ -193,3 +190,27 @@ deployment "pipeline_laser_inspection" do
 
    add_default_logger
 end
+
+deployment 'initialize_orientation_estimation' do
+
+   task("initial_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
+   task "estimate_wall_orientation", "wall_orientation_correction::Task"
+
+   add_default_logger
+end
+
+deployment 'ikf_orientation_estimation' do
+   task("ikf_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
+   task "orientation_in_map", "wall_orientation_correction::OrientationInMap"
+
+   add_default_logger
+end
+
+simple_deployment("pose_estimator", "pose_estimation::UWPoseEstimator").
+    periodic(0.01)
