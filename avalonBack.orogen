@@ -111,6 +111,12 @@ deployment 'avalon_back_base_control' do
 
     task "orientation_correction", "uw_particle_localization::OrientationCorrection"
 
+    task("controlconverter_movement","raw_control_command_converter::Movement")
+    task("controlconverter_position","raw_control_command_converter::Position")
+
+    task("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
+        periodic(0.01)
+
     add_default_logger.
     	periodic(0.01)
 end
@@ -150,11 +156,6 @@ simple_deployment("controldev", "controldev::Remote")
 simple_deployment("sysmon","sysmon::Task")
 simple_deployment("modem","modem_can::Task").periodic(0.1)
 
-simple_deployment("controlconverter_movement","raw_control_command_converter::Movement")
-simple_deployment("controlconverter_position","raw_control_command_converter::Position")
-
-simple_deployment("auv_rel_pos_controller", "auv_rel_pos_controller::Task").
-    periodic(0.01)
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
 simple_deployment("structure_servoing", "structure_servoing::Task")
@@ -190,7 +191,7 @@ end
 
 deployment 'initialize_orientation_estimation' do
 
-   task("initial_orientation_estimator", "orientation_estimator::IKF").
+   task("initial_orientation_estimator", "orientation_estimator::IKFEstimator").
     realtime.
     priority(50)
 
@@ -200,7 +201,7 @@ deployment 'initialize_orientation_estimation' do
 end
 
 deployment 'ikf_orientation_estimation' do
-   task("ikf_orientation_estimator", "orientation_estimator::IKF").
+   task("ikf_orientation_estimator", "orientation_estimator::IKFEstimator").
     realtime.
     priority(50)
 
