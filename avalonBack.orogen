@@ -194,7 +194,7 @@ end
 
 deployment 'initialize_orientation_estimation' do
 
-   task("initial_orientation_estimator", "orientation_estimator::IKFEstimator").
+   task("initial_orientation_estimator", "orientation_estimator::IKF").
     realtime.
     priority(50)
 
@@ -204,7 +204,7 @@ deployment 'initialize_orientation_estimation' do
 end
 
 deployment 'ikf_orientation_estimation' do
-   task("ikf_orientation_estimator", "orientation_estimator::IKFEstimator").
+   task("ikf_orientation_estimator", "orientation_estimator::IKF").
     realtime.
     priority(50)
 
