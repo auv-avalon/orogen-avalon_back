@@ -79,6 +79,10 @@ deployment 'avalon_back_base_control' do
     
     task("constant_command", "auv_control::ConstantCommand").
     periodic(0.01)
+    task("constant_command_ground_follower", "auv_control::ConstantCommandGroundFollower").
+    periodic(0.01)
+    task("constant_command_ground_avoidance", "auv_control::ConstantCommandGroundAvoidance").
+    periodic(0.01)
     
     task("constant_command_vel", "auv_control::ConstantCommand").
     periodic(0.01)
@@ -160,7 +164,6 @@ simple_deployment("modem","modem_can::Task").periodic(0.1)
 
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
-simple_deployment("structure_servoing", "structure_servoing::Task")
 simple_deployment("sonar_structure_servoing", "sonar_structure_servoing::Task")
 
 deployment "dual_wall_servoing" do
@@ -206,10 +209,10 @@ deployment 'initialize_orientation_estimation' do
 end
 
 deployment 'ikf_orientation_estimation' do
-#   task("ikf_orientation_estimator", "orientation_estimator::IKF").
-#    realtime.
-#    priority(50)
-#
+   task("ikf_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
    task("base_orientation_estimator", "orientation_estimator::BaseEstimator").
     realtime.
     priority(50)
