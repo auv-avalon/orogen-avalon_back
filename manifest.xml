@@ -21,6 +21,7 @@
         <!-- <depend package="avalon/orogen/piplineTracker" /> -->
 	<depend package="avalon/orogen/avalonControl" /> 
 	<depend package="avalon/orogen/sysmon" /> 
+	<depend package="avalon/orogen/gps_helper" /> 
 	<depend package="avalon/orogen/modemCanReader" /> 
         <!-- <depend package="avalon/orogen/ekfSLAM" /> -->
         <depend package="auv_avalon/orogen/uw_particle_localization" />
