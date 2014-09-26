@@ -37,6 +37,7 @@ using_task_library "uw_particle_localization"
 using_task_library "sonar_feature_detector"
 using_task_library "auv_waypoint_navigator"
 using_task_library "wall_orientation_correction"
+using_task_library "gps_helper"
 
 using_task_library "taskmon"
 using_task_library "auv_control"
@@ -79,6 +80,10 @@ deployment 'avalon_back_base_control' do
     task("waypoint_navigator", "auv_control::WaypointNavigator")
     
     task("constant_command", "auv_control::ConstantCommand").
+    periodic(0.01)
+    task("constant_command_ground_follower", "auv_control::ConstantCommandGroundFollower").
+    periodic(0.01)
+    task("constant_command_ground_avoidance", "auv_control::ConstantCommandGroundAvoidance").
     periodic(0.01)
     
     task("constant_command_vel", "auv_control::ConstantCommand").
@@ -160,9 +165,9 @@ simple_deployment("sysmon","sysmon::Task")
 simple_deployment("modem","modem_can::Task").periodic(0.1)
 simple_deployment("tritech_modem","modemdriver::ModemCanbus")
 
+simple_deployment("map_to_gps","gps_helper::MapToGPS")
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
-simple_deployment("structure_servoing", "structure_servoing::Task")
 simple_deployment("sonar_structure_servoing", "sonar_structure_servoing::Task")
 
 deployment "dual_wall_servoing" do
@@ -208,10 +213,10 @@ deployment 'initialize_orientation_estimation' do
 end
 
 deployment 'ikf_orientation_estimation' do
-#   task("ikf_orientation_estimator", "orientation_estimator::IKF").
-#    realtime.
-#    priority(50)
-#
+   task("ikf_orientation_estimator", "orientation_estimator::IKF").
+    realtime.
+    priority(50)
+
    task("base_orientation_estimator", "orientation_estimator::BaseEstimator").
     realtime.
     priority(50)
