@@ -22,6 +22,7 @@ using_task_library "hbridge"
 using_task_library "controldev"
 using_task_library "sysmon"
 using_task_library "modem_can"
+using_task_library "modemdriver"
 using_task_library "raw_control_command_converter"
 
 using_task_library "wall_servoing"
@@ -157,6 +158,7 @@ simple_deployment("controldev", "controldev::Remote")
 
 simple_deployment("sysmon","sysmon::Task")
 simple_deployment("modem","modem_can::Task").periodic(0.1)
+simple_deployment("tritech_modem","modemdriver::ModemCanbus")
 
 
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")

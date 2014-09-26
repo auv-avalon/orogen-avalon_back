@@ -30,6 +30,7 @@
         <depend package="drivers/orogen/taskmon" />
         <!-- <depend package="avalon/orogen/piplineTracker" /> -->
         <depend package="auv_avalon/orogen/wall_servoing" /> 
+        <depend package="auv_avalon/orogen/modemdriver_tritech" /> 
         <depend package="avalon/orogen/structure_servoing" /> 
         <depend package="auv_avalon/orogen/sonar_structure_servoing" /> 
         <depend package="auv_avalon/orogen/sonar_feature_estimator" />
