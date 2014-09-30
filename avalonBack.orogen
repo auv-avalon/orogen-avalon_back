@@ -16,6 +16,7 @@ using_task_library "sonar_tritech"
 using_task_library "avalon_control"
 using_task_library "depth_reader"
 using_task_library "battery_watcher"
+using_task_library "sonar_blueview"
 
 using_task_library "canbus"
 using_task_library "hbridge"
@@ -130,6 +131,8 @@ deployment 'avalon_back_base_control' do
 end
     
 simple_deployment("battery_watcher", "battery_watcher::Task")
+
+simple_deployment("blueview", "sonar_blueview::Task")
 
 simple_deployment("sonar_distance_estimator", "rear_sonar_distance_estimator::Task")
 # simple_deployment("ekf_slam","ekf_slam::Task")
