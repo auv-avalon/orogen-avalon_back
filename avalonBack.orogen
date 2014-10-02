@@ -170,6 +170,8 @@ simple_deployment("tritech_modem","modemdriver::ModemCanbus")
 
 simple_deployment("map_to_gps","gps_helper::MapToGPS")
 
+simple_deployment("waypoint_navigation","gps_helper::WaypointNavigation")
+
 simple_deployment("wall_servoing", "wall_servoing::SingleSonarServoing")
 simple_deployment("sonar_structure_servoing", "sonar_structure_servoing::Task")
 
